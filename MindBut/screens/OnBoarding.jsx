@@ -5,16 +5,70 @@ import {
   Text, 
   View, 
   StyleSheet, 
-  Image
+  Image,
+  Pressable
 } from 'react-native';
 import React, { useRef, useEffect } from 'react';
+import axios from 'axios';
+import * as KakaoLogin from '@react-native-seoul/kakao-login';
 
-const FadeInView = (props) => {
+
+const KakaoLoginButton = () => {
+  /**
+   * Sign in user to Kakao Auth server, and receive bearer access token.
+   * 
+   * @returns Bearer token for accessing Kakao API server
+   */
+  const getKakaoAccessToken = async () => {
+    try {
+      return await KakaoLogin.login().then((res) => res.accessToken);
+    } catch(err) {
+      console.error("Kakao login error", err);
+    }
+  }
+
+  /**
+   * Fetch user ID from Kakao API server using access token, and sign in user to
+   * MindBut server.
+   * 
+   * @param accessToken Bearer token received from Kakao Auth.
+   */
+  const signInWithAccessToken = async (accessToken) => {
+    try {
+      const username = await axios.post(
+        "http://localhost:8000/login/",
+        { "access_token": accessToken }
+      ).then((res) => res.data);
+    } catch (err) {
+      console.error("Server login error", err);
+    }
+  }
+
+  return (
+    <Pressable onPress={async () => {
+      const accessToken = await getKakaoAccessToken();
+      signInWithAccessToken(accessToken);
+    }}>
+      <Image
+        source={require("../assets/kakao_login/ko/kakao_login_large_wide.png")}
+        style={styles.kakao}
+      />
+    </Pressable>
+  );
+};
+
+
+const FadeInView = () => {
+  // Refs
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim2 = useRef(new Animated.Value(0)).current;
   const fadeAnim3 = useRef(new Animated.Value(0)).current;
   const fadeAnim4 = useRef(new Animated.Value(0)).current;
 
+  /**
+   * Fade animation for contents.
+   * 
+   */
   const showFeatureAnimation = () => {
     const fadeDuration = 1000;
     const bufferDuration = 500;
@@ -86,10 +140,12 @@ const FadeInView = (props) => {
         duration: fadeDuration,
         useNativeDriver: true,
       }),
-    ]).start()
+    ]).start();
   };
 
+  // Effects
   useEffect(showFeatureAnimation, [fadeAnim, fadeAnim2, fadeAnim3, fadeAnim4]);
+
 
   return (
     <View>
@@ -156,13 +212,9 @@ const FadeInView = (props) => {
           style={styles.icon}
           source={require("../assets/wip.png")}
         />
-        <Image
-          source={require("../assets/kakao_login/ko/kakao_login_large_wide.png")}
-          style={styles.kakao}
-        />
+        <KakaoLoginButton />
       </Animated.View>
     </View>
-    
   );
 };
 
@@ -171,8 +223,7 @@ export default function OnBoarding() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-      <FadeInView>
-      </FadeInView>
+      <FadeInView />
     </SafeAreaView>
   )
 }
