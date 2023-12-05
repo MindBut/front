@@ -11,6 +11,7 @@ import {
 import React, { useRef, useEffect } from 'react';
 import axios from 'axios';
 import * as KakaoLogin from '@react-native-seoul/kakao-login';
+import { Colors } from './colors';
 
 
 const KakaoLoginButton = () => {
@@ -58,7 +59,7 @@ const KakaoLoginButton = () => {
 };
 
 
-const FadeInView = () => {
+export default OnBoarding = () => {
   // Refs
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim2 = useRef(new Animated.Value(0)).current;
@@ -70,8 +71,8 @@ const FadeInView = () => {
    * 
    */
   const showFeatureAnimation = () => {
-    const fadeDuration = 1000;
-    const bufferDuration = 500;
+    const fadeDuration = 750;
+    const bufferDuration = 1000;
 
     Animated.sequence([
       // DEBUG: RESET FADE VAL
@@ -146,106 +147,96 @@ const FadeInView = () => {
   // Effects
   useEffect(showFeatureAnimation, [fadeAnim, fadeAnim2, fadeAnim3, fadeAnim4]);
 
-
-  return (
-    <View>
-      <Animated.View
-        style={{
-          ...styles.animationView,
-          opacity: fadeAnim,
-        }}>
-        <Text style={styles.caption}>
-          인지행동치료 기반의
-        </Text>
-        <Text style={styles.caption}>
-          AI 상담 챗봇
-        </Text>
-        <Image
-          style={styles.icon}
-          source={require("../assets/wip.png")}
-        />
-        <Text style={styles.caption}>
-          마인드 벗
-        </Text>
-      </Animated.View>
-      <Animated.View
-        style={{
-          ...styles.animationView,
-          opacity: fadeAnim2,
-        }}>
-        <Text style={styles.caption}>
-          맞춤형으로
-        </Text>
-        <Text style={styles.caption}>
-          정신 건강을 진단하고
-        </Text>
-        <Image
-          style={styles.icon}
-          source={require("../assets/wip.png")}
-        />
-      </Animated.View>
-      <Animated.View
-        style={{
-          ...styles.animationView,
-          opacity: fadeAnim3,
-        }}>
-        <Text style={styles.caption}>
-          챗봇을 통해
-        </Text>
-        <Text style={styles.caption}>
-          즉각적 도움을 제공하는
-        </Text>
-        <Image
-          style={styles.icon}
-          source={require("../assets/wip.png")}
-        />
-      </Animated.View>
-      <Animated.View
-        style={{
-          ...styles.animationView,
-          opacity: fadeAnim4,
-        }}>
-        <Text style={styles.caption}>
-          AI 상담 보조 서비스
-        </Text>
-        <Image
-          style={styles.icon}
-          source={require("../assets/wip.png")}
-        />
-        <KakaoLoginButton />
-      </Animated.View>
-    </View>
-  );
-};
-
-
-export default function OnBoarding() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-      <FadeInView />
+      <View style={{ height: '100%', justifyContent: 'center' }}>
+        <Animated.View
+          style={{
+            ...styles.animationView,
+            opacity: fadeAnim,
+          }}>
+          <Image
+            style={styles.icon}
+            source={require("../assets/health-check.png")}
+          />
+          <Text style={styles.captionBold}>
+            맞춤형으로
+          </Text>
+          <Text style={styles.caption}>
+            정신 건강을 진단하고
+          </Text>
+        </Animated.View>
+        <Animated.View
+          style={{
+            ...styles.animationView,
+            opacity: fadeAnim2,
+          }}>
+          <Image
+            style={styles.icon}
+            source={require("../assets/heart.png")}
+          />
+          <Text style={styles.captionBold}>
+            챗봇을 통해
+          </Text>
+          <Text style={styles.caption}>
+            즉각적 도움을 제공하는
+          </Text>
+        </Animated.View>
+        <Animated.View
+          style={{
+            ...styles.animationView,
+            opacity: fadeAnim3,
+          }}>
+          <Image
+            style={styles.icon}
+            source={require("../assets/growth-mindset.png")}
+          />
+          <Text style={styles.captionBold}>
+            인지행동치료 기반
+          </Text>
+          <Text style={styles.caption}>
+            AI 상담 보조 서비스
+          </Text>
+        </Animated.View>
+        <Animated.View
+          style={{
+            ...styles.animationView,
+            opacity: fadeAnim4,
+          }}>
+          <Text style={styles.title}>
+            마인드벗
+          </Text>
+          <Image
+            style={styles.logo}
+            source={require("../assets/wip.png")}
+          />
+          <KakaoLoginButton />
+        </Animated.View>
+      </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 20 : 0,
-    backgroundColor: '#0ca0ef',
-    justifyContent: 'center',
+    backgroundColor: Colors.white,
   },
   animationView: {
     position: 'absolute',
-    top: -200,
-    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
   },
   icon: {
-    marginTop: 30,
-    marginBottom: 30,
+    width: 200,
+    height: 200
+  },
+  logo: {
+    marginTop: 50,
+    marginBottom: 50,
     width: 200,
     height: 200
   },
@@ -253,10 +244,25 @@ const styles = StyleSheet.create({
     width: 300,
     resizeMode: 'contain'
   },
+  captionBold: {
+    textAlign: 'center',
+    fontSize: 24,
+    marginTop: 80,
+    marginBottom: 10,
+    color: Colors.white,
+    fontFamily: 'NotoSansKR-Medium',
+  },
   caption: {
     textAlign: 'center',
     fontSize: 24,
     marginBottom: 10,
-    color: 'white',
+    color: Colors.white,
+    fontFamily: 'NotoSansKR-Light',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 60,
+    fontFamily: 'NotoSansKR-ExtraBold',
+    color: Colors.main5,
   }
 });
