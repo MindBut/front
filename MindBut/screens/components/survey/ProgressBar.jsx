@@ -4,7 +4,7 @@ import {
   Animated,
 } from 'react-native';
 import React, { useEffect, useRef } from 'react';
-import { Colors } from '../styles';
+import { Colors } from '../common/styles';
 
 
 export default ProgressBar = ({ currentPage, totalPage }) => {

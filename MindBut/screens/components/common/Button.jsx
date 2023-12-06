@@ -3,7 +3,7 @@ import {
   StyleSheet, 
   Pressable,
 } from 'react-native';
-import { Colors, Fonts } from '../styles';
+import { Colors, Fonts } from './styles';
 
 /**
  * A button.
@@ -15,7 +15,7 @@ export default Button = ({ text, onPress, disabled }) => {
       onPress={onPress} 
       style={{
         ...styles.button, 
-        backgroundColor: disabled ? Colors.disabled : Colors.main1,
+        backgroundColor: disabled ? Colors.lightGray : Colors.main1,
       }}
       disabled={disabled}>
       <Text style={styles.buttonText}>{text}</Text>

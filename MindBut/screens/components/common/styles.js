@@ -7,7 +7,7 @@ export const Colors = {
   main4: '#a3daff',
   main5: '#0ca0ef',
   white: '#f8f8f8',
-  disabled: '#dbdbdb',
+  lightGray: '#dbdbdb',
   grayFont: '#727272',
 }
 
@@ -16,7 +16,7 @@ export const Fonts = {
   body: 'NotoSansKR-Regular',
 }
 
-export const Default = StyleSheet.create({
+export const defaultStyle = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 20 : 0,
