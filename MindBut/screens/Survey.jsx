@@ -15,6 +15,7 @@ import { Colors, Fonts } from './styles';
 import SelectOption from './components/SelectOption';
 import Button from './components/Button';
 import ProgressBar from './components/ProgressBar';
+import { useNavigation } from '@react-navigation/native';
 
 /**
  * Guidance text in survey pages.
@@ -76,9 +77,17 @@ const SurveyOptions = ({ question, responseId, setResponseId }) => {
 }
 
 const PrepareSetup = () => {
+  const navigation = useNavigation();
+
+  const sendSurveyToServer = () => {
+
+  }
+
   return (
     <View style={{ height: '100%', justifyContent: 'center' }}>
-      <Text style={styles.header}>{"OOO님만을 위한 맞춤형 마인드벗을 준비 중이에요."}</Text>
+      <Text style={styles.header}>
+        {"OOO님만을 위한 맞춤형 마인드벗을 준비 중이에요."}
+      </Text>
     </View>
   )
 }
@@ -167,9 +176,8 @@ export default Survey = () => {
         index: currentPage + 1
       });
       setCurrentPage((currentPage) => ++currentPage);
-    } catch (err) { // End of page
-      console.log(responses);
-      // TODO: POST
+    } catch (err) {
+      // End of page
     }
   }
 

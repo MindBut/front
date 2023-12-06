@@ -12,6 +12,7 @@ import React, { useRef, useEffect } from 'react';
 import axios from 'axios';
 import * as KakaoLogin from '@react-native-seoul/kakao-login';
 import { Colors } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 
 const KakaoLoginButton = () => {
@@ -30,16 +31,18 @@ const KakaoLoginButton = () => {
 
   /**
    * Fetch user ID from Kakao API server using access token, and sign in user to
-   * MindBut server.
+   * MindBut server. If successful, navigate to survey screen.
    * 
    * @param accessToken Bearer token received from Kakao Auth.
    */
+  const navigation = useNavigation();
   const signInWithAccessToken = async (accessToken) => {
     try {
       const username = await axios.post(
         "http://localhost:8000/login/",
         { "access_token": accessToken }
       ).then((res) => res.data);
+      navigation.navigate('Survey');
     } catch (err) {
       console.error("Server login error", err);
     }
