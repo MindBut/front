@@ -11,7 +11,7 @@ import {
 import React, { useRef, useEffect } from 'react';
 import axios from 'axios';
 import * as KakaoLogin from '@react-native-seoul/kakao-login';
-import { Colors } from './colors';
+import { Colors } from './styles';
 
 
 const KakaoLoginButton = () => {
@@ -249,14 +249,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 80,
     marginBottom: 10,
-    color: Colors.white,
+    color: Colors.main5,
     fontFamily: 'NotoSansKR-Medium',
   },
   caption: {
     textAlign: 'center',
     fontSize: 24,
     marginBottom: 10,
-    color: Colors.white,
+    // color: Colors.white,
     fontFamily: 'NotoSansKR-Light',
   },
   title: {

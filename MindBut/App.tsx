@@ -1,5 +1,4 @@
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+// import React from 'react';
 import {
   Platform,
   SafeAreaView,
@@ -11,12 +10,14 @@ import {
   View,
 } from 'react-native';
 import OnBoarding from './screens/OnBoarding';
+import Survey from './screens/Survey';
 
 function App(): JSX.Element {
   
 
   return (
-    <OnBoarding />
+    // <OnBoarding />
+    <Survey />
   );
 }
 

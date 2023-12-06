@@ -61,6 +61,11 @@
 		<string>fonts/noto_sans_kr/NotoSansKR-Medium.ttf</string>
 		<string>fonts/noto_sans_kr/NotoSansKR-Bold.ttf</string>
 		<string>fonts/noto_sans_kr/NotoSansKR-ExtraBold.ttf</string>
+		<string>fonts/noto_sans_kr/NotoSansKR-Regular.ttf</string>
+		<string>fonts/nanum-square/NanumSquareOTF_acB.otf</string>
+		<string>fonts/nanum-square/NanumSquareOTF_acEB.otf</string>
+		<string>fonts/nanum-square/NanumSquareOTF_acL.otf</string>
+		<string>fonts/nanum-square/NanumSquareOTF_acR.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
