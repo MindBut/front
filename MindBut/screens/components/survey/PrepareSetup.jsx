@@ -1,8 +1,10 @@
 import {
   View,
   Text,
+  StyleSheet
 } from 'react-native'
 import { useNavigation } from "@react-navigation/native";
+import { Colors, Fonts } from '../common/styles';
 
 export default PrepareSetup = () => {
   const navigation = useNavigation();
@@ -19,3 +21,18 @@ export default PrepareSetup = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 32,
+    fontFamily: Fonts.header,
+    marginVertical: 20,
+    paddingHorizontal: 20,
+  },
+  body: {
+    fontSize: 20,
+    fontFamily: Fonts.body,
+    color: Colors.grayFont,
+    paddingHorizontal: 20,
+  },
+});

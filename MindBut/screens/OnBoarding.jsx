@@ -11,7 +11,7 @@ import {
 import React, { useRef, useEffect } from 'react';
 import axios from 'axios';
 import * as KakaoLogin from '@react-native-seoul/kakao-login';
-import { Colors } from './styles';
+import { Colors } from './components/common/styles';
 import { useNavigation } from '@react-navigation/native';
 
 
