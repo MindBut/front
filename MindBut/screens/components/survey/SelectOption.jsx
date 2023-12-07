@@ -4,6 +4,7 @@ import {
   Pressable,
   View,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import { Colors, Fonts } from '../common/styles';
 
@@ -12,13 +13,13 @@ import { Colors, Fonts } from '../common/styles';
  * 
  */
 const Option = ({ text, onPress, selected }) => {
-  const backgroundColor = (selected) ? Colors.main2 : Colors.white;
-  const textColor = (selected) ? Colors.white : '#000000';
+  const selectedBackground = selected ? {...styles.option, ...styles.optionSelected} : styles.option;
+  const selectedColor = selected ? {...styles.optionText, ...styles.optionTextSelected} : styles.optionText;
   return (
     <Pressable 
       onPress={onPress} 
-      style={{...styles.option, backgroundColor: backgroundColor}}>
-      <Text style={{...styles.buttonText, color: textColor}}>{text}</Text>
+      style={selectedBackground}>
+      <Text style={selectedColor}>{text}</Text>
     </Pressable>
   );
 };
@@ -32,6 +33,7 @@ const Option = ({ text, onPress, selected }) => {
  */
 export default SelectOption = ({ question, responseId, setResponseId }) => {
 
+  // Responses to be chosen
   const RESPONSES = [{
     key: 'option1',
     text: '거의 매일 방해받았다.',
@@ -46,33 +48,56 @@ export default SelectOption = ({ question, responseId, setResponseId }) => {
     text: '전혀 방해 받지 않았다.',
   }];
 
+  // Questionnaire parsing
+  const textLines = question.split('\n');
+
   return (
     <>
-      <Text style={styles.surveyQuestion}>{question}</Text>
-      <FlatList
-        scrollEnabled={false}
-        data={RESPONSES}
-        renderItem={({item}) => (
-          <Option
-            text={item.text}
-            selected={responseId === item.key}
-            onPress={() => setResponseId(item.key)}
-          />
-        )}
-      />
+      <View style={styles.questionArea}>
+        {textLines.map((item) => (
+          <Text style={styles.question} key={textLines.indexOf(item)}>
+            {item}
+          </Text>
+        ))}
+      </View>
+      <View style={styles.optionArea}>
+        <FlatList
+          scrollEnabled={false}
+          data={RESPONSES}
+          renderItem={({item}) => (
+            <Option
+              text={item.text}
+              selected={responseId === item.key}
+              onPress={() => setResponseId(item.key)}
+            />
+          )}
+        />
+      </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  questionArea: {
+    width: '100%',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginVertical: 60,
+  },
+  optionArea: {
+
+  },
   option: {
-    paddingVertical: 20,
+    paddingVertical: 18,
     paddingHorizontal: 25,
     borderRadius: 16,
-    borderWidth: 0.3,
+    borderWidth: 1,
     borderColor: Colors.lightGray,
+    backgroundColor: Colors.secondary,
     marginVertical: 10,
     marginHorizontal: 20,
+    width: Dimensions.get("screen").width - 40,
+    alignItems: 'center',
     ...Platform.select({
       ios: { 
         shadowColor: "#7090B0",
@@ -88,14 +113,23 @@ const styles = StyleSheet.create({
       },
     })
   },
-  buttonText: {
-    fontFamily: Fonts.header,
+  optionSelected: {
+    borderWidth: 1,
+    borderColor: Colors.primary,
+    backgroundColor: Colors.tertiary,
+    color: Colors.white,
+  },
+  optionText: {
+    fontFamily: Fonts.body,
     fontSize: 18,
   },
-  surveyQuestion: {
-    fontFamily: Fonts.body,
-    fontSize: 20,
-    margin: 20,
-    marginTop: 40,
+  optionTextSelected: {
+    fontFamily: Fonts.header,
+    color: Colors.primary
+  },
+  question: {
+    fontFamily: Fonts.header,
+    fontSize: 18,
+    marginVertical: 3
   }
 });

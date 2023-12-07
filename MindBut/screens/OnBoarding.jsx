@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 80,
     marginBottom: 10,
-    color: Colors.main5,
+    color: Colors.primary,
     fontFamily: 'NotoSansKR-Medium',
   },
   caption: {
@@ -266,6 +266,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 60,
     fontFamily: 'NotoSansKR-ExtraBold',
-    color: Colors.main5,
+    color: Colors.primary,
   }
 });

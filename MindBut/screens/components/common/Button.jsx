@@ -15,7 +15,7 @@ export default Button = ({ text, onPress, disabled }) => {
       onPress={onPress} 
       style={{
         ...styles.button, 
-        backgroundColor: disabled ? Colors.lightGray : Colors.main1,
+        backgroundColor: disabled ? Colors.lightGray : Colors.primary,
       }}
       disabled={disabled}>
       <Text style={styles.buttonText}>{text}</Text>

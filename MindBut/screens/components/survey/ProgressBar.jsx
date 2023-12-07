@@ -43,12 +43,12 @@ export default ProgressBar = ({ currentPage, totalPage }) => {
 const styles = StyleSheet.create({
   fullBar: {
     width: '100%',
-    height: 5,
-    backgroundColor: Colors.disabled,
+    height: 7,
+    backgroundColor: Colors.lightGray,
   },
   progress: {
-    backgroundColor: Colors.main5,
-    height: 5,
+    backgroundColor: Colors.primary,
+    height: 7,
     borderRadius: 5,
   }
 })

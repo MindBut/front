@@ -1,6 +1,11 @@
 import { StyleSheet } from "react-native"
 
 export const Colors = {
+  primary: '#5687f6',
+  secondary: '#f7f6fa',
+  tertiary: '#eef3fe',
+
+  // DEPRECATED
   main1: '#0077ed',
   main2: '#0c9fef',
   main3: '#1ebfff',
