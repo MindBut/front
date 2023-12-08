@@ -62,7 +62,7 @@ export default Survey = () => {
     key: '4',
     component: 
       <SelectOption
-        question={"지난 2주일 동안 기분이 가라앉거나\n우울하거나 희망이 없다고 느껴지는 것으로\n인해 얼마나 자주 방해를 받았습니까?"}
+        questionId={0}
         responseId={response1}
         setResponseId={setResponse1}
       />
@@ -70,7 +70,7 @@ export default Survey = () => {
     key: '5',
     component: 
       <SelectOption
-        question={"지난 2주일 동안 일 또는 여가 활동을 하는 데\n흥미나 즐거움을 느끼지 못하는 것으로 인해\n얼마나 자주 방해를 받았습니까?"}
+        questionId={1}
         responseId={response2}
         setResponseId={setResponse2}
       />
@@ -78,7 +78,7 @@ export default Survey = () => {
     key: '6',
     component: 
       <SelectOption
-        question={"지난 2주일 동안 걱정하는 것을 멈추거나\n조절할 수가 없는 것으로 인해 얼마나 자주\n방해를 받았습니까?"}
+        questionId={2}
         responseId={response3}
         setResponseId={setResponse3}
       />
@@ -86,7 +86,7 @@ export default Survey = () => {
     key: '7',
     component: 
       <SelectOption
-        question={"지난 2주일 동안 초조하거나 불안하거나\n조마조마하게 느끼는 것으로 인해\n얼마나 자주 방해를 받았습니까?"}
+        questionId={3}
         responseId={response4}
         setResponseId={setResponse4}
       />
@@ -110,7 +110,7 @@ export default Survey = () => {
         });
         setCurrentPage(0);
       }, 1500)
-    ).catch(
+    ).catch( // Reset selected options & Go to first page
       (err) => {
         flatListRef.current.scrollToIndex({
           animated: true, 
