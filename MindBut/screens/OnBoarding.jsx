@@ -37,15 +37,14 @@ const KakaoLoginButton = () => {
    */
   const navigation = useNavigation();
   const signInWithAccessToken = async (accessToken) => {
-    try {
-      const username = await axios.post(
-        "http://localhost:8000/login/",
-        { "access_token": accessToken }
-      ).then((res) => res.data);
-      navigation.navigate('Survey');
-    } catch (err) {
-      console.error("Server login error", err);
-    }
+    const username = await axios.post(
+      "http://localhost:8000/login/",
+      { "access_token": accessToken }
+    ).then(
+      navigation.navigate("Survey")
+    ).catch(
+      console.error("Server login error", err)
+    );
   }
 
   return (

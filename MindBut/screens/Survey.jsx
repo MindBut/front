@@ -18,6 +18,7 @@ import PrepareSetup from './components/survey/PrepareSetup';
 import Button from './components/common/Button';
 import ProgressBar from './components/survey/ProgressBar';
 import SetGoals from './components/survey/SetGoals';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default Survey = () => {
@@ -26,6 +27,7 @@ export default Survey = () => {
 
   // States
   const [currentPage, setCurrentPage] = useState(0);
+  const [goalResponse, setGoalResponse] = useState(); // Goal
   const [response1, setResponse1] = useState(); // First question
   const [response2, setResponse2] = useState(); // Second question
   const [response3, setResponse3] = useState(); // Third question
@@ -45,7 +47,10 @@ export default Survey = () => {
   }, {
     key: '2',
     component: 
-      <SetGoals />,
+      <SetGoals 
+        goalResponse={goalResponse}
+        setGoalResponse={setGoalResponse}
+      />,
   }, {
     key: '3',
     component: 
@@ -57,7 +62,7 @@ export default Survey = () => {
     key: '4',
     component: 
       <SelectOption
-        question={"지난 2주일 동안 기분이 가라앉거나 우울하거나 희망이 없다고 느껴지는 것으로 인해 얼마나 자주 방해를 받았습니까?"}
+        question={"지난 2주일 동안 기분이 가라앉거나\n우울하거나 희망이 없다고 느껴지는 것으로\n인해 얼마나 자주 방해를 받았습니까?"}
         responseId={response1}
         setResponseId={setResponse1}
       />
@@ -65,7 +70,7 @@ export default Survey = () => {
     key: '5',
     component: 
       <SelectOption
-        question={"지난 2주일 동안 일 또는 여가 활동을 하는 데 흥미나 즐거움을 느끼지 못하는 것으로 인해 얼마나 자주 방해를 받았습니까?"}
+        question={"지난 2주일 동안 일 또는 여가 활동을 하는 데\n흥미나 즐거움을 느끼지 못하는 것으로 인해\n얼마나 자주 방해를 받았습니까?"}
         responseId={response2}
         setResponseId={setResponse2}
       />
@@ -73,7 +78,7 @@ export default Survey = () => {
     key: '6',
     component: 
       <SelectOption
-        question={"지난 2주일 동안 걱정하는 것을 멈추거나 조절할 수가 없는 것으로 인해 얼마나 자주 방해를 받았습니까?"}
+        question={"지난 2주일 동안 걱정하는 것을 멈추거나\n조절할 수가 없는 것으로 인해 얼마나 자주\n방해를 받았습니까?"}
         responseId={response3}
         setResponseId={setResponse3}
       />
@@ -81,7 +86,7 @@ export default Survey = () => {
     key: '7',
     component: 
       <SelectOption
-        question={"지난 2주일 동안 초조하거나 불안하거나 조마조마하게 느끼는 것으로 인해 얼마나 자주 방해를 받았습니까?"}
+        question={"지난 2주일 동안 초조하거나 불안하거나\n조마조마하게 느끼는 것으로 인해\n얼마나 자주 방해를 받았습니까?"}
         responseId={response4}
         setResponseId={setResponse4}
       />
@@ -90,6 +95,37 @@ export default Survey = () => {
     component:
       <PrepareSetup />
   }];
+
+  // Send to server
+  const navigation = useNavigation();
+  const sendSurveyToServer = async (body) => {
+    await axios.post(
+      "http://localhost:8000/survey/generate/",
+      body,
+    ).then(
+      setTimeout(() => { // TODO: Change to navigation.navigate('CheckIn')
+        flatListRef.current.scrollToIndex({
+          animated: true, 
+          index: 0
+        });
+        setCurrentPage(0);
+      }, 1500)
+    ).catch(
+      (err) => {
+        flatListRef.current.scrollToIndex({
+          animated: true, 
+          index: 0
+        });
+        setCurrentPage(0);
+        setGoalResponse();
+        setResponse1();
+        setResponse2();
+        setResponse3();
+        setResponse4();
+        console.error(err);
+      }
+    );
+  };
 
   /**
    * Show next page elements. If end of page, do nothing
@@ -100,10 +136,25 @@ export default Survey = () => {
         animated: true, 
         index: currentPage + 1
       });
+
+      // Send on last page
+      if (currentPage == 6) {
+        const requestBody = {
+          'goal': goalResponse,
+          'resp1': response1,
+          'resp2': response2,
+          'resp3': response3,
+          'resp4': response4,
+        };
+        sendSurveyToServer(requestBody);
+      }
+
       setCurrentPage((currentPage) => ++currentPage);
-    } catch (err) {
+    } catch (err) {s
       // End of page
     }
+
+    
   }
 
   /**
@@ -119,6 +170,40 @@ export default Survey = () => {
     } catch(err) {
       // Start of page
     }
+  }
+  
+  /**
+   * Different button actions for each pages
+   * 
+   * @param {*} page Current page
+   * @returns Button component with corresponding props.
+   */
+  const buttonFor = (page) => {
+    switch (page) {
+      case 0:
+      case 2: 
+        return <Button text={"다음"} onPress={showNextPage} />;
+      case 1:
+        return (
+          <Button 
+            text={"다음"} 
+            onPress={showNextPage} 
+            disabled={!goalResponse} 
+          />);
+      case 3:
+      case 4:
+      case 5:
+      case 6: 
+        return (
+          <Button 
+            text={"다음"} 
+            onPress={showNextPage} 
+            disabled={!responses[currentPage-3]} 
+          />);
+      case 7: 
+        return <></>;
+      default: break;
+    };
   }
 
   // For rendering individual page
@@ -153,12 +238,7 @@ export default Survey = () => {
         keyExtractor={item => item.key}
       />
       <View style={styles.pageFooter}>
-        { currentPage < 3 
-          ? <Button text={"다음"} onPress={showNextPage} /> 
-          : <></> }
-        { currentPage >= 3 && currentPage < 7 
-          ? <Button text={"다음"} onPress={showNextPage} disabled={!responses[currentPage-3]} />
-          : <></> }
+        {buttonFor(currentPage)}
       </View>
     </SafeAreaView>
   );
@@ -173,6 +253,7 @@ const styles = StyleSheet.create({
   pageBody: {
     height: '100%',
     width: Dimensions.get("screen").width,
+    alignItems: 'center',
   },
   pageHeader: {
     height: '5%',

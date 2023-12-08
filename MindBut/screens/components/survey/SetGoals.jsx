@@ -1,62 +1,87 @@
 import { 
-  Text,
-  ScrollView,
   View,
   StyleSheet,
+  FlatList,
+  Text,
 } from 'react-native';
 import { Colors, Fonts } from '../common/styles';
-
-const GoalItem = () => {
-  return (
-    <View style={styles.item}>
-      <Text>Hello</Text>
-    </View>
-  );
-};
+import Option from '../common/Option';
 
 
-export default SetGoals = () => {
+export default SetGoals = ({ goalResponse, setGoalResponse }) => {
+  // Goals to select
+  const GOALS = [{
+    key: 'option1',
+    text: '불안 완화',
+  }, {
+    key: 'option2',
+    text: '관계 개선',
+  }, {
+    key: 'option3',
+    text: '생산성 향상',
+  }, {
+    key: 'option4',
+    text: '우울 완화',
+  }, {
+    key: 'option5',
+    text: '자존감 향상',
+  }, {
+    key: 'option6',
+    text: '자신감 향상',
+  }, {
+    key: 'option7',
+    text: '스트레스 완화',
+  }, {
+    key: 'option8',
+    text: '행복 증대',
+  }];
+
+  const leftOrRight = (item) => {
+
+  }
+
   return (
     <>
       <Instruction 
         title={"무엇을 위해 \n가입하셨나요?"}
         description={"당신의 목표에 기반하여 마인드벗이 맞춤형 솔루션을 제공합니다."}
       />
-      <ScrollView style={styles.container}>
-        <View style={styles.itemBox}>
-          <GoalItem />
-          <GoalItem />
-          <GoalItem />
-          <GoalItem />
-          <GoalItem />
-          <GoalItem />
-          <GoalItem />
-          <GoalItem />
-          <GoalItem />
-        </View>
-      </ScrollView>
-      </>
+      <View style={styles.optionArea}>
+        <FlatList 
+          keyExtractor={item => item.key}
+          data={GOALS}
+          renderItem={({item}) => (
+            <View style={styles.optionGrid}>
+              <View style={styles.optionWrap}>
+                <Option 
+                  text={item.text} 
+                  selected={goalResponse === item.text}
+                  onPress={() => setGoalResponse(item.text)}
+                />
+              </View>
+            </View>
+          )}
+          numColumns={2}
+        />
+      </View>
+    </>
   )
 };
 
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: Colors.lightGray,
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginVertical: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  itemBox: {
+  optionArea: {
+    width: '100%',
     flex: 1,
-    flexDirection: 'row',
-    paddingHorizontal: 20,
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    marginTop: 30,
+    paddingHorizontal: 10
+  },
+  optionGrid: {
+    width: '50%',
+  },
+  optionWrap: {
+    marginHorizontal: 10,
   },
   container: {
     height: '100%',
   }
-})
+});

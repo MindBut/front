@@ -9,8 +9,11 @@ import { Colors, Fonts } from '../common/styles';
 export default PrepareSetup = () => {
   const navigation = useNavigation();
 
-  const sendSurveyToServer = () => {
-
+  const sendSurveyToServer = async (body) => {
+    await axios.post(
+      "http://localhost:8000/survey/",
+      body,
+    ).then((res) => console.log(res.data)).catch((err) => console.err(err));
   };
 
   return (

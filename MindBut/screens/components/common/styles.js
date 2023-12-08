@@ -14,6 +14,7 @@ export const Colors = {
   white: '#f8f8f8',
   lightGray: '#dbdbdb',
   grayFont: '#727272',
+  darkGray: '#4f4f4f',
 }
 
 export const Fonts = {
