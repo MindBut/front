@@ -3,19 +3,9 @@ import {
   Text,
   StyleSheet
 } from 'react-native'
-import { useNavigation } from "@react-navigation/native";
 import { Colors, Fonts } from '../common/styles';
 
 export default PrepareSetup = () => {
-  const navigation = useNavigation();
-
-  const sendSurveyToServer = async (body) => {
-    await axios.post(
-      "http://localhost:8000/survey/",
-      body,
-    ).then((res) => console.log(res.data)).catch((err) => console.err(err));
-  };
-
   return (
     <View style={{ height: '100%', justifyContent: 'center' }}>
       <Text style={styles.header}>

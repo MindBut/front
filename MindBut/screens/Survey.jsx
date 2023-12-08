@@ -1,7 +1,6 @@
 import { 
   SafeAreaView, 
   StatusBar, 
-  Text, 
   View, 
   StyleSheet, 
   Pressable,
