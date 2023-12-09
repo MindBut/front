@@ -9,7 +9,7 @@ import {
   Pressable
 } from 'react-native';
 import React, { useRef, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import * as KakaoLogin from '@react-native-seoul/kakao-login';
 import { Colors } from './components/common/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -22,12 +22,12 @@ const KakaoLoginButton = () => {
    * @returns Bearer token for accessing Kakao API server
    */
   const getKakaoAccessToken = async () => {
-    try {
-      return await KakaoLogin.login().then((res) => res.accessToken);
-    } catch(err) {
-      console.error("Kakao login error", err);
-    }
-  }
+    KakaoLogin
+    .login()
+    .then((res) => res.accessToken)
+    .then((token) => signInWithAccessToken(token))
+    .catch((err) => console.error("[Kakao Auth]", err));
+  };
 
   /**
    * Fetch user ID from Kakao API server using access token, and sign in user to
@@ -37,21 +37,16 @@ const KakaoLoginButton = () => {
    */
   const navigation = useNavigation();
   const signInWithAccessToken = async (accessToken) => {
-    const username = await axios.post(
+    axios.post(
       "http://localhost:8000/login/",
       { "access_token": accessToken }
-    ).then(
-      navigation.navigate("Survey")
-    ).catch(
-      console.error("Server login error", err)
-    );
-  }
+    )
+    .then(() => navigation.navigate("Survey"))
+    .catch((err) => console.error("[Server Login]", err));
+  };
 
   return (
-    <Pressable onPress={async () => {
-      const accessToken = await getKakaoAccessToken();
-      signInWithAccessToken(accessToken);
-    }}>
+    <Pressable onPress={() => getKakaoAccessToken()}>
       <Image
         source={require("../assets/kakao_login/ko/kakao_login_large_wide.png")}
         style={styles.kakao}
