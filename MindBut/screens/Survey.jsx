@@ -98,32 +98,33 @@ export default Survey = () => {
   // Send to server
   const navigation = useNavigation();
   const sendSurveyToServer = async (body) => {
-    await axios.post(
-      "http://localhost:8000/survey/generate/",
-      body,
-    ).then(
-      setTimeout(() => { // TODO: Change to navigation.navigate('CheckIn')
-        flatListRef.current.scrollToIndex({
-          animated: true, 
-          index: 0
-        });
-        setCurrentPage(0);
-      }, 1500)
-    ).catch( // Reset selected options & Go to first page
-      (err) => {
-        flatListRef.current.scrollToIndex({
-          animated: true, 
-          index: 0
-        });
-        setCurrentPage(0);
-        setGoalResponse();
-        setResponse1();
-        setResponse2();
-        setResponse3();
-        setResponse4();
-        console.error(err);
-      }
-    );
+    // await axios.post(
+    //   "http://localhost:8000/survey/generate/",
+    //   body,
+    // ).then(
+    //   setTimeout(() => { // TODO: Change to navigation.navigate('CheckIn')
+    //     flatListRef.current.scrollToIndex({
+    //       animated: true, 
+    //       index: 0
+    //     });
+    //     setCurrentPage(0);
+    //   }, 1500)
+    // ).catch( // Reset selected options & Go to first page
+    //   (err) => {
+    //     flatListRef.current.scrollToIndex({
+    //       animated: true, 
+    //       index: 0
+    //     });
+    //     setCurrentPage(0);
+    //     setGoalResponse();
+    //     setResponse1();
+    //     setResponse2();
+    //     setResponse3();
+    //     setResponse4();
+    //     console.error(err);
+    //   }
+    // );
+    setTimeout(() => { navigation.navigate('CheckIn') }, 1500);
   };
 
   /**

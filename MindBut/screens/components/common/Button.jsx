@@ -9,16 +9,34 @@ import { Colors, Fonts } from './styles';
  * A button.
  * 
  */
-export default Button = ({ text, onPress, disabled }) => {
+export default Button = ({ text, onPress, disabled, alternativeStyle }) => {
+  const selectedStyle = alternativeStyle 
+    ? {...styles.button, ...styles.alternative} 
+    : styles.button;
+
+  const selectedTextStyle = alternativeStyle
+    ? {...styles.buttonText, ...styles.alternativeText}
+    : styles.buttonText
+
   return (
     <Pressable 
       onPress={onPress} 
       style={{
-        ...styles.button, 
-        backgroundColor: disabled ? Colors.lightGray : Colors.primary,
+        ...selectedStyle, 
+        backgroundColor: 
+          disabled ? Colors.lightGray : selectedStyle.backgroundColor,
+        borderColor:
+          disabled ? Colors.lightGray : selectedStyle.borderColor,
       }}
       disabled={disabled}>
-      <Text style={styles.buttonText}>{text}</Text>
+      <Text
+        style={{
+          ...selectedTextStyle,
+          color:
+            disabled ? Colors.white : selectedTextStyle.color,
+        }}>
+        {text}
+      </Text>
     </Pressable>
   );
 };
@@ -26,7 +44,11 @@ export default Button = ({ text, onPress, disabled }) => {
 const styles = StyleSheet.create({
   button: {
     paddingVertical: 15,
+    marginVertical: 5,
     borderRadius: 16,
+    borderWidth: 1,
+    borderColor: Colors.primary,
+    backgroundColor: Colors.primary,
     width: '100%',
     alignItems: 'center',
   },
@@ -34,5 +56,11 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontFamily: Fonts.header,
     fontSize: 20,
-  }
-})
+  },
+  alternative: {
+    backgroundColor: Colors.white,
+  },
+  alternativeText: {
+    color: Colors.primary,
+  },
+});

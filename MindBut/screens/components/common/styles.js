@@ -5,12 +5,10 @@ export const Colors = {
   secondary: '#f7f6fa',
   tertiary: '#eef3fe',
 
+  chatBox: '#abc3fb',
+  chatWhite: '#eeeeee',
+
   // DEPRECATED
-  main1: '#0077ed',
-  main2: '#0c9fef',
-  main3: '#1ebfff',
-  main4: '#a3daff',
-  main5: '#0ca0ef',
   white: '#f8f8f8',
   lightGray: '#dbdbdb',
   grayFont: '#727272',
