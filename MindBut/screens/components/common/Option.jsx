@@ -13,8 +13,11 @@ import { Colors, Fonts } from './styles';
  * 
  */
 export default Option = ({ text, onPress, selected }) => {
-  const selectedBackground = selected ? {...styles.option, ...styles.optionSelected} : styles.option;
-  const selectedColor = selected ? {...styles.optionText, ...styles.optionTextSelected} : styles.optionText;
+  const selectedBackground = 
+    selected ? {...styles.option, ...styles.optionSelected} : styles.option;
+  const selectedColor = 
+    selected ? {...styles.optionText, ...styles.optionTextSelected} 
+      : styles.optionText;
   return (
     <Pressable 
       onPress={onPress} 

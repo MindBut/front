@@ -10,13 +10,13 @@ import { Colors, Fonts } from './styles';
  * 
  */
 export default Button = ({ text, onPress, disabled, alternativeStyle }) => {
-  const selectedStyle = alternativeStyle 
-    ? {...styles.button, ...styles.alternative} 
-    : styles.button;
+  const selectedStyle = 
+    alternativeStyle ? {...styles.button, ...styles.alternative} 
+      : styles.button;
 
-  const selectedTextStyle = alternativeStyle
-    ? {...styles.buttonText, ...styles.alternativeText}
-    : styles.buttonText
+  const selectedTextStyle = 
+    alternativeStyle ? {...styles.buttonText, ...styles.alternativeText}
+      : styles.buttonText
 
   return (
     <Pressable 
@@ -25,15 +25,13 @@ export default Button = ({ text, onPress, disabled, alternativeStyle }) => {
         ...selectedStyle, 
         backgroundColor: 
           disabled ? Colors.lightGray : selectedStyle.backgroundColor,
-        borderColor:
-          disabled ? Colors.lightGray : selectedStyle.borderColor,
+        borderColor: disabled ? Colors.lightGray : selectedStyle.borderColor,
       }}
       disabled={disabled}>
       <Text
         style={{
           ...selectedTextStyle,
-          color:
-            disabled ? Colors.white : selectedTextStyle.color,
+          color: disabled ? Colors.white : selectedTextStyle.color,
         }}>
         {text}
       </Text>

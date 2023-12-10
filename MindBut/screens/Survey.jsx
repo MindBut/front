@@ -150,7 +150,7 @@ export default Survey = () => {
       }
 
       setCurrentPage((currentPage) => ++currentPage);
-    } catch (err) {s
+    } catch (err) {
       // End of page
     }
 
@@ -219,15 +219,21 @@ export default Survey = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <View style={styles.pageHeader}>
-        <Pressable onPress={showPrevPage}>
-          { (currentPage === 0)
-            ? <></>
-            : <Image style={{width: 28, height: 28, marginBottom: 20}} 
-              source={require("../assets/left-arrow.png")}/>}
-        </Pressable>
-        { (currentPage > 2 && currentPage < 7)
-          ? <ProgressBar currentPage={currentPage - 2} totalPage={4}/> 
-          : <></> }
+        {(currentPage === 0) ? (
+          <></>
+        ): (
+          <Pressable onPress={showPrevPage}>
+            <Image 
+              style={{width: 28, height: 28, marginBottom: 20}} 
+              source={require("../assets/left-arrow.png")}
+            />
+          </Pressable>
+        )}
+        {(currentPage > 2 && currentPage < 7) ? (
+          <ProgressBar currentPage={currentPage - 2} totalPage={4}/> 
+        ) : (
+          <></>
+        )}
       </View>
       <FlatList
         ref={flatListRef}
