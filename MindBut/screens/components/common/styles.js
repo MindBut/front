@@ -5,8 +5,8 @@ export const Colors = {
   secondary: '#f7f6fa',
   tertiary: '#eef3fe',
 
-  chatBox: '#abc3fb',
-  chatWhite: '#eeeeee',
+  chatBlue: '#abc3fb',
+  chatGray: '#eeeeee',
 
   // DEPRECATED
   white: '#f8f8f8',

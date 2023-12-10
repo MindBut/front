@@ -10,8 +10,8 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="OnBoarding" component={OnBoarding} />
-        <Stack.Screen name="Survey" component={Survey} />
+        {/* <Stack.Screen name="OnBoarding" component={OnBoarding} /> */}
+        {/* <Stack.Screen name="Survey" component={Survey} /> */}
         <Stack.Screen name="CheckIn" component={CheckIn} />
       </Stack.Navigator>
     </NavigationContainer>

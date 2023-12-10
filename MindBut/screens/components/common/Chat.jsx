@@ -11,9 +11,9 @@ const ChatBubble = ({ text, fromUser }) => {
   return (
     <View style={{
       ...styles.bubble,
-      backgroundColor: fromUser ? Colors.chatBox : Colors.chatWhite,
-      borderTopLeftRadius: fromUser ? 10 : 0,
-      borderTopRightRadius: fromUser ? 0 : 10,  
+      backgroundColor: fromUser ? Colors.chatBlue : Colors.chatGray,
+      borderTopLeftRadius: fromUser ? 16 : 0,
+      borderTopRightRadius: fromUser ? 0 : 16,  
     }}>
       <Text style={styles.bubbleText}>{text}</Text>
     </View>
@@ -22,36 +22,36 @@ const ChatBubble = ({ text, fromUser }) => {
 
 
 export default Chat = ({ texts, fromUser }) => {
-  if (fromUser) {
-    return (
-      <View style={styles.userChat}>
-        { texts.map((item) => (
-          <ChatBubble text={item.text} fromUser={fromUser} key={item.seq} />
-        )) }
-      </View>
-    );
-  } else {
-    return (
-      <View style={styles.botSection}>
-        <View style={styles.iconSection}>
-          <Image
-            source={require("../../../assets/bot-icon.png")}
-            style={styles.icon} />
-        </View>
-        <View style={styles.botChat}>
-          <Text style={{fontFamily: Fonts.header, fontSize: 16}}>마인드벗</Text>
-          { texts.map((item) => (
+  return (
+    <>
+      {fromUser ? (
+        <View style={styles.userChat}>
+          {texts.map((item) => (
             <ChatBubble text={item.text} fromUser={fromUser} key={item.seq} />
-          )) }
+          ))}
         </View>
-      </View>
-    );
-  }
+      ) : (
+        <View style={styles.botSection}>
+          <View style={styles.iconSection}>
+            <Image
+              source={require("../../../assets/bot-icon.png")}
+              style={styles.icon} />
+          </View>
+          <View style={styles.botChat}>
+            <Text style={{fontFamily: Fonts.header, fontSize: 16}}>마인드벗</Text>
+            {texts.map((item) => (
+              <ChatBubble text={item.text} fromUser={fromUser} key={item.seq} />
+            ))}
+          </View>
+        </View>
+      )}
+    </>
+  );
 };
 
 styles = StyleSheet.create({
   bubble: {
-    borderRadius: 10,
+    borderRadius: 16,
     marginVertical: 5,
     paddingVertical: 10,
     paddingHorizontal: 15,
