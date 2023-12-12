@@ -70,7 +70,7 @@ export default MoodTracking = () => {
       });
       setCurrentPage((currentPage) => ++currentPage);
     } catch (err) {
-      // End of page
+      navigation.navigate('CheckIn');
     }
   }
 
