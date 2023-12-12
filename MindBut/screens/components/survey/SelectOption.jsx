@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   questionArea: {
     width: '100%',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     marginVertical: 60,
   },
   optionArea: {

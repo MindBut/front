@@ -12,7 +12,7 @@ import { Colors, Fonts } from './styles';
  * Option component for selection.
  * 
  */
-export default Option = ({ text, onPress, selected }) => {
+export default Option = ({ text, onPress, selected, style, fontStyle }) => {
   const selectedBackground = 
     selected ? {...styles.option, ...styles.optionSelected} : styles.option;
   const selectedColor = 
@@ -21,8 +21,10 @@ export default Option = ({ text, onPress, selected }) => {
   return (
     <Pressable 
       onPress={onPress} 
-      style={selectedBackground}>
-      <Text style={selectedColor}>{text}</Text>
+      style={StyleSheet.flatten([selectedBackground, style])}>
+      <Text style={StyleSheet.flatten([selectedColor, fontStyle])}>
+        {text}
+      </Text>
     </Pressable>
   );
 };

@@ -9,6 +9,7 @@ import Option from '../common/Option';
 
 
 export default SetGoals = ({ goalResponse, setGoalResponse }) => {
+  
   // Goals to select
   const GOALS = [{
     key: 'option1',
@@ -36,10 +37,6 @@ export default SetGoals = ({ goalResponse, setGoalResponse }) => {
     text: '행복 증대',
   }];
 
-  const leftOrRight = (item) => {
-
-  }
-
   return (
     <>
       <Instruction 
@@ -50,16 +47,15 @@ export default SetGoals = ({ goalResponse, setGoalResponse }) => {
         <FlatList 
           keyExtractor={item => item.key}
           data={GOALS}
+          style={{width: '100%', paddingHorizontal: 20}}
+          columnWrapperStyle={{justifyContent: 'space-between'}}
           renderItem={({item}) => (
-            <View style={styles.optionGrid}>
-              <View style={styles.optionWrap}>
-                <Option 
-                  text={item.text} 
-                  selected={goalResponse === item.text}
-                  onPress={() => setGoalResponse(item.text)}
-                />
-              </View>
-            </View>
+            <Option 
+              text={item.text} 
+              selected={goalResponse === item.text}
+              onPress={() => setGoalResponse(item.text)}
+              style={{width: '47%'}}
+            />
           )}
           numColumns={2}
         />
@@ -73,13 +69,6 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     marginTop: 30,
-    paddingHorizontal: 10
-  },
-  optionGrid: {
-    width: '50%',
-  },
-  optionWrap: {
-    marginHorizontal: 10,
   },
   container: {
     height: '100%',

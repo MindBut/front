@@ -7,9 +7,13 @@ export const Colors = {
 
   chatBlue: '#abc3fb',
   chatGray: '#eeeeee',
+  
+  // white: '#f8f8f8',
+  white: '#f3f3f3',
+  trueWhite: '#ffffff',
+
 
   // DEPRECATED
-  white: '#f8f8f8',
   lightGray: '#dbdbdb',
   grayFont: '#727272',
   darkGray: '#4f4f4f',
