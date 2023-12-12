@@ -5,7 +5,6 @@ import {
   Text,
   Image
 } from 'react-native';
-import { useState } from 'react';
 import { Colors, Fonts } from '../common/styles';
 import Option from '../common/Option';
 
@@ -129,7 +128,7 @@ export default SelectMood = ({ response, setResponse }) => {
             renderItem={({item}) => (
               <Option 
                 text={item} 
-                element={<Image style={{width: 28, height: 28, marginBottom: 20}} source={require("../../../assets/wip.png")} />}
+                element={<Image style={{width: 32, height: 32, marginBottom: 10}} source={require("../../../assets/wip.png")} />}
                 selected={response.subcategory === item}
                 onPress={() => {
                   setResponse({ 
@@ -154,7 +153,7 @@ export default SelectMood = ({ response, setResponse }) => {
 const styles = StyleSheet.create({
   text: {
     fontFamily: Fonts.header,
-    fontSize: 18,
+    fontSize: 24,
     marginVertical: 3
   },
   optionArea: {
@@ -182,7 +181,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   subcategoryItem: {
-    // backgroundColor: Colors.trueWhite,
     height: 100,
     width: 100,
     paddingHorizontal: 0,

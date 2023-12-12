@@ -37,6 +37,7 @@ export default CheckIn = () => {
 
   // Refs
   const scrollRef = useRef();
+  const navigation = useNavigation();
 
   // States
   const [isChatting, setIsChatting] = useState(false);
@@ -113,7 +114,9 @@ export default CheckIn = () => {
             text={"직접 입력하기"} 
             alternativeStyle={true} 
             onPress={() => setIsChatting(true)} />
-          <Button text={"무드 트래킹하기"} />
+          <Button 
+            text={"무드 트래킹하기"} 
+            onPress={() => navigation.navigate('MoodTracking')}/>
         </View>
       )}
     </SafeAreaView>
@@ -144,9 +147,10 @@ const styles = StyleSheet.create({
   quit: {
     borderRadius: 12,
     borderWidth: 1,
+    borderColor: Colors.chatGray,
     paddingVertical: 5,
     paddingHorizontal: 20,
-    backgroundColor: Colors.chatGray,
+    backgroundColor: Colors.white,
   },
   quitText: {
     fontFamily: Fonts.header,
