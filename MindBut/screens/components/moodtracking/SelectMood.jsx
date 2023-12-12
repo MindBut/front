@@ -1,12 +1,8 @@
 import { 
-  SafeAreaView, 
-  StatusBar, 
   View, 
   StyleSheet, 
   FlatList,
-  Pressable,
   Text,
-  Dimensions,
   Image
 } from 'react-native';
 import { useState } from 'react';
@@ -133,6 +129,7 @@ export default SelectMood = ({ response, setResponse }) => {
             renderItem={({item}) => (
               <Option 
                 text={item} 
+                element={<Image style={{width: 28, height: 28, marginBottom: 20}} source={require("../../../assets/wip.png")} />}
                 selected={response.subcategory === item}
                 onPress={() => {
                   setResponse({ 

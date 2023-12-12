@@ -2,9 +2,6 @@ import {
   Text,
   StyleSheet, 
   Pressable,
-  View,
-  FlatList,
-  Dimensions,
 } from 'react-native';
 import { Colors, Fonts } from './styles';
 
@@ -12,7 +9,7 @@ import { Colors, Fonts } from './styles';
  * Option component for selection.
  * 
  */
-export default Option = ({ text, onPress, selected, style, fontStyle }) => {
+export default Option = ({ text, element, onPress, selected, style, fontStyle }) => {
   const selectedBackground = 
     selected ? {...styles.option, ...styles.optionSelected} : styles.option;
   const selectedColor = 
@@ -22,6 +19,7 @@ export default Option = ({ text, onPress, selected, style, fontStyle }) => {
     <Pressable 
       onPress={onPress} 
       style={StyleSheet.flatten([selectedBackground, style])}>
+      { element }
       <Text style={StyleSheet.flatten([selectedColor, fontStyle])}>
         {text}
       </Text>
