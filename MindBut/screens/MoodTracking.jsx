@@ -17,6 +17,7 @@ import Button from './components/common/Button';
 import SelectMood from './components/moodtracking/SelectMood';
 import ScaleMood from './components/moodtracking/ScaleMood';
 import SelectReason from './components/moodtracking/SelectReason';
+import EasyChat from './components/moodtracking/EasyChat';
 
 
 export default MoodTracking = () => {
@@ -32,6 +33,8 @@ export default MoodTracking = () => {
   const [response2, setResponse2] = useState();
   // Select Reason
   const [response3, setResponse3] = useState();
+  // Message from MindBut
+  const [message, setMessage] = useState('');
 
   // Sub-pages within Mood Tracking
   const PAGES = [{
@@ -57,6 +60,11 @@ export default MoodTracking = () => {
         setResponse={setResponse3} 
       />
     )
+  }, {
+    key: '4',
+    component: (
+      <EasyChat userMessage={"(대충 생성된 문장)"} />
+    )
   }];
 
   /**
@@ -68,9 +76,14 @@ export default MoodTracking = () => {
         animated: true, 
         index: currentPage + 1
       });
+      
+      if (currentPage === 2) {
+        
+      }
+
       setCurrentPage((currentPage) => ++currentPage);
     } catch (err) {
-      navigation.navigate('CheckIn');
+      // End of page
     }
   }
 
@@ -108,12 +121,16 @@ export default MoodTracking = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <View style={styles.pageHeader}>
-        <Pressable onPress={showPrevPage}>
-          <Image 
-            style={{width: 28, height: 28, marginBottom: 20}} 
-            source={require("../assets/left-arrow.png")}
-          />
-        </Pressable>
+        {(currentPage < 3) ? (
+          <Pressable onPress={showPrevPage}>
+            <Image 
+              style={{width: 28, height: 28, marginBottom: 20}} 
+              source={require("../assets/left-arrow.png")}
+            />
+          </Pressable>
+        ) : (
+          <></>
+        )}
       </View>
       <FlatList
         ref={flatListRef}
@@ -127,13 +144,17 @@ export default MoodTracking = () => {
         )}
         keyExtractor={item => item.key}
       />
-      <View style={styles.pageFooter}>
-        <Button 
-          text={"다음"} 
-          onPress={showNextPage} 
-          disabled={disabledFor(currentPage)}
-        />
-      </View>
+      {(currentPage < 3) ? (
+        <View style={styles.pageFooter}>
+          <Button 
+            text={"다음"} 
+            onPress={showNextPage} 
+            disabled={disabledFor(currentPage)}
+          />
+        </View>
+      ) : (
+        <></>
+      )}
     </SafeAreaView>
   );
 };

@@ -5,7 +5,6 @@ export const Colors = {
   secondary: '#f7f6fa',
   tertiary: '#eef3fe',
 
-  chatBlue: '#abc3fb',
   chatGray: '#eeeeee',
   
   // white: '#f8f8f8',
