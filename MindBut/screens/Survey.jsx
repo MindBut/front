@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 20 : 0,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.trueWhite,
   },
   pageBody: {
     height: '100%',

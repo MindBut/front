@@ -11,10 +11,9 @@ const ChatBubble = ({ text, fromUser }) => {
   return (
     <View style={{
       ...styles.bubble,
-      backgroundColor: fromUser ? Colors.primary : Colors.trueWhite,
-      borderColor: fromUser ? Colors.primary: Colors.secondary,
-      borderTopLeftRadius: fromUser ? 16 : 0,
-      borderTopRightRadius: fromUser ? 0 : 16,
+      backgroundColor: fromUser ? Colors.primary : Colors.gray,
+      borderTopLeftRadius: fromUser ? 24 : 0,
+      borderTopRightRadius: fromUser ? 0 : 24,
     }}>
       <Text 
         style={{
@@ -58,8 +57,7 @@ export default Chat = ({ texts, fromUser }) => {
 
 styles = StyleSheet.create({
   bubble: {
-    borderRadius: 16,
-    borderWidth: 0,
+    borderRadius: 24,
     marginVertical: 5,
     paddingVertical: 10,
     paddingHorizontal: 15,

@@ -24,14 +24,14 @@ export default Button = ({ text, onPress, disabled, alternativeStyle }) => {
       style={{
         ...selectedStyle, 
         backgroundColor: 
-          disabled ? Colors.lightGray : selectedStyle.backgroundColor,
-        borderColor: disabled ? Colors.lightGray : selectedStyle.borderColor,
+          disabled ? Colors.gray : selectedStyle.backgroundColor,
+        borderColor: disabled ? Colors.gray : selectedStyle.borderColor,
       }}
       disabled={disabled}>
       <Text
         style={{
           ...selectedTextStyle,
-          color: disabled ? Colors.white : selectedTextStyle.color,
+          color: disabled ? Colors.trueWhite : selectedTextStyle.color,
         }}>
         {text}
       </Text>
@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: Colors.white,
+    color: Colors.trueWhite,
     fontFamily: Fonts.header,
     fontSize: 20,
   },
   alternative: {
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.trueWhite,
   },
   alternativeText: {
     color: Colors.primary,

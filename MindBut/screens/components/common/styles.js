@@ -5,17 +5,9 @@ export const Colors = {
   secondary: '#f7f6fa',
   tertiary: '#eef3fe',
 
-  chatGray: '#eeeeee',
-  
-  // white: '#f8f8f8',
-  white: '#f3f3f3',
   trueWhite: '#ffffff',
-
-
-  // DEPRECATED
-  lightGray: '#dbdbdb',
-  grayFont: '#727272',
-  darkGray: '#4f4f4f',
+  lightGray: '#f3f3f3',
+  gray: '#e9e9eb'
 }
 
 export const Fonts = {

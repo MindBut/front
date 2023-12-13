@@ -127,14 +127,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 20 : 0,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.trueWhite,
   },
   pageHeader: {
     height: '7%',
     paddingHorizontal: 20,
     alignItems: 'flex-end',
     borderBottomWidth: 2,
-    borderColor: Colors.chatGray,
+    borderColor: Colors.lightGray,
   },
   pageBody: {
     height: '75%',
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   quit: {
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: Colors.chatGray,
+    borderColor: Colors.lightGray,
     paddingVertical: 5,
     paddingHorizontal: 20,
     backgroundColor: Colors.white,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 70,
     borderWidth: 1,
     borderColor: Colors.primary,
-    backgroundColor: Colors.chatGray,
+    backgroundColor: Colors.trueWhite,
     borderRadius: 16,
     padding: 15,
     paddingTop: 15,
