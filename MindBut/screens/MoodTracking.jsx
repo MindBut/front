@@ -32,7 +32,7 @@ export default MoodTracking = () => {
   // Scale Mood
   const [response2, setResponse2] = useState();
   // Select Reason
-  const [response3, setResponse3] = useState();
+  const [response3, setResponse3] = useState([]);
   // Message from MindBut
   const [message, setMessage] = useState('');
 
@@ -78,7 +78,7 @@ export default MoodTracking = () => {
       });
       
       if (currentPage === 2) {
-        
+        console.log(response3);
       }
 
       setCurrentPage((currentPage) => ++currentPage);

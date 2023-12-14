@@ -224,8 +224,16 @@ export default SelectReason = ({ current, response, setResponse}) => {
             <Option 
               text={item.option.name} 
               element={item.option.image}
-              selected={response === item.option.name}
-              onPress={() => setResponse(item.option.name)}
+              selected={response.includes(item.option.name)}
+              onPress={() => {
+                if (response.includes(item.option.name)) {
+                  let res = [...response];
+                  res.splice(res.indexOf(item.option.name), 1);
+                  setResponse(res);
+                } else {
+                  setResponse((res) => [...res, item.option.name])
+                }
+              }}
               style={styles.item}
               fontStyle={styles.itemFont}
             />
