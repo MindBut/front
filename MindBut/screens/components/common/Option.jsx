@@ -59,8 +59,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.tertiary,
   },
   optionText: {
-    fontFamily: Fonts.body,
+    fontFamily: Fonts.header,
     fontSize: 18,
+    color: Colors.grayText,
   },
   optionTextSelected: {
     fontFamily: Fonts.header,

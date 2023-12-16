@@ -6,6 +6,7 @@ export const Colors = {
   tertiary: '#eef3fe',
 
   trueWhite: '#ffffff',
+  grayText: '#656565',
   lightGray: '#f3f3f3',
   gray: '#e9e9eb'
 }
