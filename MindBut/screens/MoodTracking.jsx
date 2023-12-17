@@ -10,14 +10,14 @@ import {
   Image
 } from 'react-native';
 import axios from 'axios';
-import { Colors } from './components/common/styles';
+import { Colors } from '../components/common/styles';
 import { useNavigation } from '@react-navigation/native';
 import { useRef, useState } from 'react';
-import Button from './components/common/Button';
-import SelectMood from './components/moodtracking/SelectMood';
-import ScaleMood from './components/moodtracking/ScaleMood';
-import SelectReason from './components/moodtracking/SelectReason';
-import EasyChat from './components/moodtracking/EasyChat';
+import Button from '../components/common/Button';
+import SelectMood from '../components/moodtracking/SelectMood';
+import ScaleMood from '../components/moodtracking/ScaleMood';
+import SelectReason from '../components/moodtracking/SelectReason';
+import EasyChat from '../components/moodtracking/EasyChat';
 
 
 export default MoodTracking = () => {

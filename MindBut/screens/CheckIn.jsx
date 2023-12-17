@@ -12,10 +12,10 @@ import {
   Image
 } from 'react-native';
 import axios from 'axios';
-import { Colors, Fonts } from './components/common/styles';
+import { Colors, Fonts } from '../components/common/styles';
 import { useNavigation } from '@react-navigation/native';
-import Button from './components/common/Button';
-import Chat from './components/common/Chat';
+import Button from '../components/common/Button';
+import Chat from '../components/common/Chat';
 import { useRef, useState } from 'react';
 
 

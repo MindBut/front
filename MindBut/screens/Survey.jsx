@@ -10,13 +10,13 @@ import {
 } from 'react-native';
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
-import { Colors, Fonts } from './components/common/styles';
-import Instruction from './components/survey/Instruction';
-import SelectOption from './components/survey/SelectOption';
-import PrepareSetup from './components/survey/PrepareSetup';
-import Button from './components/common/Button';
-import ProgressBar from './components/survey/ProgressBar';
-import SetGoals from './components/survey/SetGoals';
+import { Colors, Fonts } from '../components/common/styles';
+import Instruction from '../components/survey/Instruction';
+import SelectOption from '../components/survey/SelectOption';
+import PrepareSetup from '../components/survey/PrepareSetup';
+import Button from '../components/common/Button';
+import ProgressBar from '../components/survey/ProgressBar';
+import SetGoals from '../components/survey/SetGoals';
 import { useNavigation } from '@react-navigation/native';
 
 

@@ -128,7 +128,7 @@ export default SelectMood = ({ response, setResponse }) => {
             renderItem={({item}) => (
               <Option 
                 text={item} 
-                element={<Image style={{width: 32, height: 32, marginBottom: 10}} source={require("../../../assets/wip.png")} />}
+                element={<Image style={{width: 32, height: 32, marginBottom: 10}} source={require("../../assets/wip.png")} />}
                 selected={response.subcategory === item}
                 onPress={() => {
                   setResponse({ 

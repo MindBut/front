@@ -40,7 +40,7 @@ export default Chat = ({ texts, fromUser }) => {
         <View style={styles.botSection}>
           <View style={styles.iconSection}>
             <Image
-              source={require("../../../assets/bot-icon.png")}
+              source={require("../../assets/bot-icon.png")}
               style={styles.icon} />
           </View>
           <View style={styles.botChat}>
