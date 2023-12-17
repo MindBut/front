@@ -6,6 +6,24 @@ import {
   Image,
 } from 'react-native';
 import { Colors, Fonts } from '../common/styles';
+import BedIcon from '../../../assets/icons/bed.svg';
+import BodyIcon from '../../../assets/icons/body.svg';
+import ChatIcon from '../../../assets/icons/chat.svg';
+import CleaningIcon from '../../../assets/icons/cleaning.svg';
+import ExtIcon from '../../../assets/icons/external.svg';
+import FamilyIcon from '../../../assets/icons/family.svg';
+import FoodIcon from '../../../assets/icons/food.svg';
+import FriendIcon from '../../../assets/icons/friend.svg';
+import HealthIcon from '../../../assets/icons/health.svg';
+import HomeIcon from '../../../assets/icons/home.svg';
+import LoveIcon from '../../../assets/icons/love.svg';
+import MoneyIcon from '../../../assets/icons/money.svg';
+import MusicIcon from '../../../assets/icons/music.svg';
+import RunningIcon from '../../../assets/icons/running.svg';
+import SchoolIcon from '../../../assets/icons/school.svg';
+import SelfIcon from '../../../assets/icons/self.svg';
+import WeatherIcon from '../../../assets/icons/weather.svg';
+import WorkIcon from '../../../assets/icons/work.svg'; 
 
 
 export default SelectReason = ({ current, response, setResponse}) => {
@@ -15,9 +33,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '일',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/icons/bed.svg')} 
+        // />
+        <WorkIcon 
+          color={response.includes('일') ? Colors.primary : Colors.grayText} 
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -26,9 +49,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '학교',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <SchoolIcon 
+          color={response.includes('학교') ? Colors.primary : Colors.grayText} 
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -37,9 +65,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '외부활동',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <ExtIcon 
+          color={response.includes('외부활동') ? Colors.primary : Colors.grayText} 
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -48,9 +81,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '집',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <HomeIcon 
+          color={response.includes('집') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -59,9 +97,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '나',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <SelfIcon
+          color={response.includes('나') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -70,9 +113,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '연인',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <LoveIcon 
+          color={response.includes('연인') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -81,9 +129,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '가족',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <FamilyIcon 
+          color={response.includes('가족') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -92,9 +145,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '친구',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <FriendIcon 
+          color={response.includes('친구') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -103,9 +161,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: 'SNS',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <ChatIcon 
+          color={response.includes('SNS') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -114,9 +177,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '음악',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <MusicIcon 
+          color={response.includes('음악') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -125,9 +193,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '수면',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <BedIcon 
+          color={response.includes('수면') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -136,9 +209,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '운동',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <RunningIcon 
+          color={response.includes('운동') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -147,9 +225,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '몸',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <BodyIcon 
+          color={response.includes('몸') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -158,9 +241,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '건강',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <HealthIcon 
+          color={response.includes('건강') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -169,9 +257,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '음식',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <FoodIcon 
+          color={response.includes('음식') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -180,9 +273,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '돈',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <MoneyIcon 
+          color={response.includes('돈') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -191,9 +289,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '날씨',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <WeatherIcon 
+          color={response.includes('날씨') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
@@ -202,9 +305,14 @@ export default SelectReason = ({ current, response, setResponse}) => {
     option: {
       name: '청소',
       image: (
-        <Image 
-          style={styles.itemIcon} 
-          source={require('../../../assets/wip.png')} 
+        // <Image 
+        //   style={styles.itemIcon} 
+        //   source={require('../../../assets/wip.png')} 
+        // />
+        <CleaningIcon 
+          color={response.includes('청소') ? Colors.primary : Colors.grayText}
+          width={14} 
+          height={14} 
         />
       )
     }
