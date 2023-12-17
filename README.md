@@ -11,17 +11,17 @@ A React Native front-end client for [**Mindbut**](https://github.com/MindBut/mod
 .
 └── Mindbut/
     ├── screens/
-    │   ├── components/
-    │   │   ├── common  /
-    │   │   │   └── (공통 컴포넌트)
-    │   │   ├── moodtracking/
-    │   │   │   └── (무드 트래킹 페이지 컴포넌트)
-    │   │   └── survey/
-    │   │       └── (설문 페이지 컴포넌트)  
     │   ├── CheckIn.jsx
     │   ├── MoodTracking.jsx
     │   ├── OnBoarding.jsx
     │   └── Survey.jsx
+    ├── components/
+    │   ├── common  /
+    │   │   └── (공통 컴포넌트)
+    │   ├── moodtracking/
+    │   │   └── (무드 트래킹 페이지 컴포넌트)
+    │   └── survey/
+    │       └── (설문 페이지 컴포넌트)  
     └── assets/
         ├── icons/
         │   └── (감정의 이유 아이콘)
