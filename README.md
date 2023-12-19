@@ -15,11 +15,14 @@ A React Native front-end client for [**Mindbut**](https://github.com/MindBut/mod
     │   ├── MoodTracking.jsx
     │   ├── OnBoarding.jsx
     │   └── Survey.jsx
+    │   └── MoodRecord.jsx
     ├── components/
-    │   ├── common  /
+    │   ├── common/
     │   │   └── (공통 컴포넌트)
     │   ├── moodtracking/
     │   │   └── (무드 트래킹 페이지 컴포넌트)
+    │   ├── moodrecord/
+    │   │   └── (무드 레코드 페이지 컴포넌트)
     │   └── survey/
     │       └── (설문 페이지 컴포넌트)  
     └── assets/
