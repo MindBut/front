@@ -5,11 +5,11 @@ import {
 } from 'react-native'
 import { Colors, Fonts } from '../common/styles';
 
-export default PrepareSetup = () => {
+export default PrepareSetup = ({ username }) => {
   return (
     <View style={{ height: '100%', justifyContent: 'center' }}>
       <Text style={styles.header}>
-        {"OOO님만을 위한 맞춤형 마인드벗을 준비 중이에요."}
+        {username + "님만을 위한 맞춤형 마인드벗을 준비 중이에요."}
       </Text>
     </View>
   );

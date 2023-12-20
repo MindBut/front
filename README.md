@@ -14,7 +14,7 @@ A React Native front-end client for [**Mindbut**](https://github.com/MindBut/mod
     │   ├── CheckIn.jsx
     │   ├── MoodTracking.jsx
     │   ├── OnBoarding.jsx
-    │   └── Survey.jsx
+    │   ├── Survey.jsx
     │   └── MoodRecord.jsx
     ├── components/
     │   ├── common/
@@ -33,7 +33,19 @@ A React Native front-end client for [**Mindbut**](https://github.com/MindBut/mod
         └── (기타 에셋)
 ```
 
+## Run
+현재는 iOS 버전만 구현됨
+
+```bash
+cd Mindbut
+cd ios && pod install
+npm run ios
+```
+
+
 ## Todos (Design)
+시뮬레이터: iPhone 15 (화면 크기 393 * 852)
+
 **온보딩**
 - [ ] 마인드벗 로고
 - [ ] 온보딩에서 표시할 항목
