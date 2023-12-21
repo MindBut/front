@@ -78,7 +78,12 @@ export default MoodTracking = () => {
       });
       
       if (currentPage === 2) {
-        console.log(response3);
+        const requestBody = {
+          mood: response1,
+          scale: response2,
+          reason: response3,
+        }
+        console.log(requestBody);
       }
 
       setCurrentPage((currentPage) => ++currentPage);

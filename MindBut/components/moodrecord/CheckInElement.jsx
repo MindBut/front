@@ -5,34 +5,35 @@ import {
   Image,
   Pressable,
 } from 'react-native';
-import { Colors, Fonts } from '../common/styles';
+import { Colors, Device, Fonts } from '../common/styles';
+import BubbleIcon from '../../assets/icons/bubble.svg'; 
 
 export default CheckInElement = ({ chat }) => {
-
-  const iconPath = "../../assets/wip.png";
 
   return (
     <View style={styles.wrapper}>
       <Text style={{textAlign: 'right',}}>4:44 PM</Text>
-      <View style={{width: '100%',}}>
+      <View style={{width: '100%', alignItems: 'flex-end'}}>
         <View style={styles.chatBox}>
           <Text style={styles.chatText}>{chat}</Text>
         </View>
-        <Image style={styles.chatIcon} source={require(iconPath)} />
       </View>
+      <BubbleIcon style={styles.chatIcon} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    borderWidth: 1,
+    // borderWidth: 1,
+    width: '100%',
+    marginBottom: 10,
   },
   chatBox: {
-    width: '100%',
-    borderWidth: 1,
-    backgroundColor: 'green',
-    padding: 18,
+    width: Device.fullLayoutWidth - 12,
+    backgroundColor: Colors.secondary,
+    paddingVertical: 18,
+    paddingHorizontal: 24,
     borderRadius: 18,
   },
   chatText: {
@@ -43,6 +44,5 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     position: 'absolute',
-    top: -12,
   }
 });

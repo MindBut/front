@@ -24,6 +24,7 @@ import SchoolIcon from '../../assets/icons/school.svg';
 import SelfIcon from '../../assets/icons/self.svg';
 import WeatherIcon from '../../assets/icons/weather.svg';
 import WorkIcon from '../../assets/icons/work.svg'; 
+import CloudIcon from '../../assets/icons/moodcloud.svg'; 
 
 
 export default MoodTrackingElement = ({ category, scale, mood, reason, time}) => {
@@ -32,36 +33,38 @@ export default MoodTrackingElement = ({ category, scale, mood, reason, time}) =>
 
   const moodColorSelector = (category) => {
     switch (category) {
-      case '기쁨': return '#ff0000';
-      case '당황': return '#ff0000';
-      case '분노': return '#ff0000';
-      case '불안': return '#ff0000';
-      case '상처': return '#ff0000';
-      case '슬픔': return '#ff0000';
+      case '기쁨': return '#42def3';
+      case '당황': return '#44f964';
+      case '분노': return '#7e58f7';
+      case '불안': return '#ffdf46';
+      case '상처': return '#ffc146';
+      case '슬픔': return '#ff5a5a';
       default: return '#ffffff';
     };
   };
 
   const moodIconSelector = (reason) => {
+    const iconSize = 24;
+
     switch (reason) {
-      case '일': return (<WorkIcon width={18} height={18} />);
-      case '학교': return (<SchoolIcon color={Colors.grayText} width={24} height={24} />);
-      case '외부활동': return (<ExtIcon width={18} height={18} />);
-      case '집': return (<HomeIcon width={18} height={18} />);
-      case '나': return (<SelfIcon width={18} height={18} />);
-      case '연인': return (<LoveIcon width={18} height={18} />);
-      case '가족': return (<FamilyIcon width={18} height={18} />);
-      case '친구': return (<FriendIcon width={18} height={18} />);
-      case 'SNS': return (<ChatIcon width={18} height={18} />);
-      case '음악': return (<MusicIcon width={18} height={18} />);
-      case '수면': return (<BedIcon width={18} height={18} />);
-      case '운동': return (<RunningIcon width={18} height={18} />);
-      case '몸': return (<BodyIcon width={18} height={18} />);
-      case '건강': return (<HealthIcon width={18} height={18} />);
-      case '음식': return (<FoodIcon width={18} height={18} />);
-      case '돈': return (<MoneyIcon width={18} height={18} />);
-      case '날씨': return (<WeatherIcon width={18} height={18} />);
-      case '청소': return (<CleaningIcon width={18} height={18} />);
+      case '일': return (<WorkIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '학교': return (<SchoolIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '외부활동': return (<ExtIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '집': return (<HomeIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '나': return (<SelfIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '연인': return (<LoveIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '가족': return (<FamilyIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '친구': return (<FriendIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case 'SNS': return (<ChatIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '음악': return (<MusicIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '수면': return (<BedIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '운동': return (<RunningIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '몸': return (<BodyIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '건강': return (<HealthIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '음식': return (<FoodIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '돈': return (<MoneyIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '날씨': return (<WeatherIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
+      case '청소': return (<CleaningIcon color={Colors.grayText} width={iconSize} height={iconSize} />);
       default: return (<></>);
     }
   };
@@ -81,7 +84,7 @@ export default MoodTrackingElement = ({ category, scale, mood, reason, time}) =>
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
-        <Image style={{width: 24, height: 24}} source={require(iconPath)} />
+        <CloudIcon color={moodColorSelector(category)} width={24} height={24} />
         <View style={styles.headerContent}>
           <Text style={styles.mood}>{concatScaleAndMood(scale, mood)}</Text>
           <View style={{justifyContent: 'flex-end'}}>
@@ -89,34 +92,40 @@ export default MoodTrackingElement = ({ category, scale, mood, reason, time}) =>
           </View>
         </View>
       </View>
-      <Pressable style={styles.body} onPress={() => console.log({mood}, {category})}>
+      <View style={styles.body}>
         <View style={{width: 24, alignItems: 'center',}}>
-          <View style={{paddingVertical: 18, width: 6, backgroundColor: 'red', borderRadius: 5}}>
+          <View style={{...styles.horizontalBar, backgroundColor: moodColorSelector(category)}}>
             <Text style={styles.mood}>{/* Vertical Bar */} </Text>
           </View>
         </View>
-        <View style={{...styles.bodyContent, backgroundColor: moodColorSelector(category)}}>
+        <Pressable 
+          style={{...styles.bodyContent, backgroundColor: moodColorSelector(category)}}
+          onPress={() => console.log({mood}, {category})}
+        >
           {moodIconSelector(reason)}
           <Text style={styles.reason}>{reason}</Text>
-        </View>
-      </Pressable>
+        </Pressable>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    borderWidth: 1,
+    // borderWidth: 1,
     width: '100%',
+    marginBottom: 10,
   },
   header: {
     flexDirection: 'row',
+    marginBottom: 5,
   },
   headerContent: {
-    borderWidth: 2,
+    // borderWidth: 1,
     width: Device.fullLayoutWidth - 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingHorizontal: 5,
   },
   body: {
     flexDirection: 'row',
@@ -130,12 +139,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     borderRadius: 24,
   },
+  horizontalBar: {
+    paddingVertical: 18, 
+    width: 6, 
+    borderRadius: 5
+  },
   mood: {
     fontSize: 18,
-    fontFamily: Fonts.body,
+    fontFamily: Fonts.header,
+    color: Colors.grayText,
   },
   reason: {
     fontSize: 18,
     fontFamily: Fonts.body,
+    color: Colors.grayText,
   }
 });
