@@ -4,7 +4,7 @@ import {
   FlatList,
   Text,
 } from 'react-native';
-import { Colors, Fonts } from '../common/styles';
+import { Device } from '../common/styles';
 import Option from '../common/Option';
 
 
@@ -39,10 +39,12 @@ export default SetGoals = ({ goalResponse, setGoalResponse }) => {
 
   return (
     <>
-      <Instruction 
-        title={"무엇을 위해 \n가입하셨나요?"}
-        description={"당신의 목표에 기반하여 마인드벗이 맞춤형 솔루션을 제공합니다."}
-      />
+      <View style={{width: Device.fullLayoutWidth}}>
+        <Instruction 
+          title={"무엇을 위해 \n가입하셨나요?"}
+          description={"당신의 목표에 기반하여 마인드벗이 맞춤형 솔루션을 제공합니다."}
+        />
+      </View>
       <View style={styles.optionArea}>
         <FlatList 
           keyExtractor={item => item.key}
@@ -55,6 +57,7 @@ export default SetGoals = ({ goalResponse, setGoalResponse }) => {
               selected={goalResponse === item.text}
               onPress={() => setGoalResponse(item.text)}
               style={{width: '47%'}}
+              fontStyle={{fontSize: 16}}
             />
           )}
           numColumns={2}
@@ -66,11 +69,8 @@ export default SetGoals = ({ goalResponse, setGoalResponse }) => {
 
 const styles = StyleSheet.create({
   optionArea: {
-    width: '100%',
+    width: Device.fullLayoutWidth,
     flex: 1,
     marginTop: 30,
   },
-  container: {
-    height: '100%',
-  }
 });

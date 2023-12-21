@@ -13,14 +13,14 @@ import { Colors, Fonts } from '../common/styles';
  */
 export default Instruction = ({ title, description }) => {
   return (
-    <View>
+    <>
       <Text style={styles.header}>
         {title}
       </Text>
       <Text style={styles.body}>
         {description}
       </Text>
-    </View>
+    </>
   );
 };
 
@@ -29,12 +29,10 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontFamily: Fonts.header,
     marginVertical: 20,
-    paddingHorizontal: 20,
   },
   body: {
     fontSize: 20,
     fontFamily: Fonts.body,
     color: Colors.grayText,
-    paddingHorizontal: 20,
   },
 });

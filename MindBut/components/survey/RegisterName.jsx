@@ -25,6 +25,7 @@ export default RegisterName = ({ username, setUsername }) => {
           clearButtonMode='always'
           onChangeText={(text) => setUsername(text)}
           value={username}
+          textAlign='center'
         />
       </View>
     </>
@@ -34,7 +35,6 @@ export default RegisterName = ({ username, setUsername }) => {
 const styles = StyleSheet.create({
   instruction: {
     width: '100%',
-    paddingHorizontal: 10,
   },
   inputArea: {
     width: '100%',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputField: {
-    width: Dimensions.get('window').width - 70,
+    width: '100%',
     borderWidth: 1,
     borderColor: Colors.primary,
     backgroundColor: Colors.trueWhite,

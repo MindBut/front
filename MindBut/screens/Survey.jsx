@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
-import { Colors, Fonts } from '../components/common/styles';
+import { Colors, Device, Fonts } from '../components/common/styles';
 import Instruction from '../components/survey/Instruction';
 import SelectOption from '../components/survey/SelectOption';
 import PrepareSetup from '../components/survey/PrepareSetup';
@@ -48,10 +48,12 @@ export default Survey = () => {
   }, {
     key: '1',
     component: (
-      <Instruction 
-        title={username + "님, 반갑습니다!"}
-        description={"맞춤형 정신 건강 솔루션을 제공하기 위해 간단한 설문이 이어질 예정입니다."} 
-      />
+      <View style={{width: Device.fullLayoutWidth}}>
+        <Instruction 
+          title={username + "님, 반갑습니다!"}
+          description={"맞춤형 정신 건강 솔루션을 제공하기 위해 간단한 설문이 이어질 예정입니다."} 
+        />
+      </View>
     )
   }, {
     key: '2',
@@ -64,10 +66,12 @@ export default Survey = () => {
   }, {
     key: '3',
     component: (
-      <Instruction 
-        title={"좋습니다!"}
-        description={"맞춤형 마인드벗을 만들기 위해 OOO님에 대해 조금 더 알려주세요."} 
-      />
+      <View style={{width: Device.fullLayoutWidth}}>
+        <Instruction 
+          title={"좋습니다!"}
+          description={"맞춤형 마인드벗을 만들기 위해 OOO님에 대해 조금 더 알려주세요."} 
+        />
+      </View>
     )
   }, {
     key: '4',
@@ -116,36 +120,70 @@ export default Survey = () => {
 
   // Send to server
   const navigation = useNavigation();
-  const sendSurveyToServer = async (body) => {
-    // await axios.post(
-    //   "http://localhost:8000/survey/generate/",
-    //   body,
-    // ).then(
-    //   setTimeout(() => {
-    //     // flatListRef.current.scrollToIndex({
-    //     //   animated: true, 
-    //     //   index: 0
-    //     // });
-    //     // setCurrentPage(0);
-    //     navigation.navigate('CheckIn');
-    //   }, 1500)
-    // ).catch( // Reset selected options & Go to first page
-    //   (err) => {
-    //     flatListRef.current.scrollToIndex({
-    //       animated: true, 
-    //       index: 0
-    //     });
-    //     setCurrentPage(0);
-    //     setGoalResponse();
-    //     setResponse1();
-    //     setResponse2();
-    //     setResponse3();
-    //     setResponse4();
-    //     console.error(err);
-    //   }
-    // );
-    setTimeout(() => { navigation.navigate('CheckIn') }, 1500);
+  const sendSurveyToServer = async () => {
+    const requestBody = {
+      // 'goal': goalResponse,
+      user_kakaotalk: '1234567890',
+      survey_question_one: response1,
+      survey_question_two: response2,
+      survey_question_three: response3,
+      survey_question_four: response4,
+    };
+
+    await axios.post(
+      "http://localhost:8000/signup/survey/",
+      requestBody,
+    ).then(
+      setTimeout(() => {
+        // flatListRef.current.scrollToIndex({
+        //   animated: true, 
+        //   index: 0
+        // });
+        // setCurrentPage(0);
+        navigation.navigate('CheckIn');
+      }, 1500)
+    ).catch( // Reset selected options & Go to first page
+      (err) => {
+        flatListRef.current.scrollToIndex({
+          animated: true, 
+          index: 0
+        });
+        setCurrentPage(0);
+        setGoalResponse();
+        setResponse1();
+        setResponse2();
+        setResponse3();
+        setResponse4();
+        console.error(err);
+      }
+    );
+
+    // DEBUG
+    // console.log(body);
+    // setTimeout(() => { navigation.navigate('CheckIn') }, 1500);
   };
+
+  const sendUsernameToUser = async () => {
+    await axios.post(
+      "http://localhost:8000/signup/name/",
+      {
+        user_kakaotalk: '1234567890',
+        user_name: username,
+      },
+    ).then(
+      console.log('username registered')
+    ).catch( // Reset selected options & Go to first page
+      (err) => {
+        flatListRef.current.scrollToIndex({
+          animated: true, 
+          index: 0
+        });
+        setUsername();
+        setCurrentPage(0);
+        console.error(err);
+      }
+    );
+  }
 
   /**
    * Show next page elements. If end of page, do nothing
@@ -160,19 +198,12 @@ export default Survey = () => {
       // Register username
       if (currentPage === 0) {
         // TODO: Send to server
-        console.log(username);
+        sendUsernameToUser();
       }
 
       // Send on last page
       if (currentPage === 7) {
-        const requestBody = {
-          'goal': goalResponse,
-          'resp1': response1,
-          'resp2': response2,
-          'resp3': response3,
-          'resp4': response4,
-        };
-        sendSurveyToServer(requestBody);
+        sendSurveyToServer();
       }
 
       setCurrentPage((currentPage) => ++currentPage);
@@ -272,21 +303,31 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 20 : 0,
     backgroundColor: Colors.trueWhite,
-  },
-  pageBody: {
-    height: '100%',
-    width: Dimensions.get("screen").width,
     alignItems: 'center',
   },
   pageHeader: {
-    height: '5%',
+    // borderWidth: 2,
+    borderColor: 'red',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    width: Device.fullLayoutWidth,
+    height: Device.tabBarHeight,
+    // paddingHorizontal: 16,
+  },
+  pageBody: {
+    // borderWidth: 2,
+    borderColor: 'blue',
+    height: '100%',
+    width: Dimensions.get("screen").width,
+    paddingHorizontal: 16,
+    alignItems: 'center',
   },
   pageFooter: {
-    height: '15%',
+    // borderWidth: 2,
+    borderColor: 'green',
     justifyContent: 'center',
+    width: Device.width,
+    height: Device.navigationHeight,
     paddingHorizontal: 20,
   },
 });

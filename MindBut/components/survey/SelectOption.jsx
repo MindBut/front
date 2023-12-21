@@ -4,7 +4,7 @@ import {
   View,
   FlatList,
 } from 'react-native';
-import { Colors, Fonts } from '../common/styles';
+import { Colors, Device, Fonts } from '../common/styles';
 import Option from '../common/Option';
 
 
@@ -84,13 +84,12 @@ export default SelectOption = ({ questionId, responseId, setResponseId }) => {
 
 const styles = StyleSheet.create({
   questionArea: {
-    width: '100%',
+    width: Device.fullLayoutWidth,
     alignItems: 'center',
-    paddingHorizontal: 10,
     marginVertical: 60,
   },
   optionArea: {
-    width: '100%',
+    width: Device.width,
   },
   optionWrap: {
     marginHorizontal: 20,
