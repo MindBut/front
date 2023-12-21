@@ -24,8 +24,8 @@ export default MoodRecord = () => {
   const navigation = useNavigation();
 
   // States
-  const [selectedDate, setSelectedDate] = useState();
-  const [markedDates, setMarkedDates] = useState();
+  const [selectedDate, setSelectedDate] = useState('2023-12-22');
+  const [markedDates, setMarkedDates] = useState({});
   const data = ['2023-12-18', '2023-12-19'];
 
   const getDataFromDate = async (dateString) => {

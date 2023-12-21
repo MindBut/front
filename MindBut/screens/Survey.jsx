@@ -122,12 +122,22 @@ export default Survey = () => {
   const navigation = useNavigation();
   const sendSurveyToServer = async () => {
     const requestBody = {
-      // 'goal': goalResponse,
-      user_kakaotalk: '1234567890',
-      survey_question_one: response1,
-      survey_question_two: response2,
-      survey_question_three: response3,
-      survey_question_four: response4,
+      // user_kakaotalk: '1234567890',
+      // survey_question_one: goalResponse,
+      // survey_question_two: response1,
+      // survey_question_three: response2,
+      // survey_question_four: response3,
+      // survey_question_five: response4,
+      "user_id": 0,
+      "user_kakaotalk": "1234567890",
+      "user_name": "마켓오",
+      "bot_name": "string",
+      "bot_color": "string",
+      "survey_question_one": goalResponse,
+      "survey_question_two": response1,
+      "survey_question_three": response2,
+      "survey_question_four": response3,
+      "survey_question_five": response4
     };
 
     await axios.post(
@@ -167,9 +177,17 @@ export default Survey = () => {
     await axios.post(
       "http://localhost:8000/signup/name/",
       {
-        user_kakaotalk: '1234567890',
-        user_name: username,
-      },
+        "user_id": 0,
+        "user_kakaotalk": "1234567890",
+        "user_name": "Hello",
+        "bot_name": "string",
+        "bot_color": "string",
+        "survey_question_one": "string",
+        "survey_question_two": "string",
+        "survey_question_three": "string",
+        "survey_question_four": "string",
+        "survey_question_five": "string"
+      }
     ).then(
       console.log('username registered')
     ).catch( // Reset selected options & Go to first page
@@ -326,8 +344,7 @@ const styles = StyleSheet.create({
     // borderWidth: 2,
     borderColor: 'green',
     justifyContent: 'center',
-    width: Device.width,
+    width: Device.fullLayoutWidth,
     height: Device.navigationHeight,
-    paddingHorizontal: 20,
   },
 });
