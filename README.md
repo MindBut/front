@@ -53,7 +53,6 @@ npm run ios
 **무드 트래킹**
 - [ ] 감정의 이유 선택하는 창에서 SVG 아이콘 크기 통일시키기
 - [ ] SVG 파일에서 `<path />` 안에 있는 `fill="currentColor"`로 전부 바꿔주기 (`<svg />`에 있는 `fill`은 안바꿔도 됨)
-- [ ] 세부 감정 선택지에 이미지 넣어주기
 
 ## Todos (Front)
 **API**
