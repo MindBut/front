@@ -1,11 +1,6 @@
 # Mindbut Client
 A React Native front-end client for [**Mindbut**](https://github.com/MindBut/model) project.
 
-- [File Structure](#file-structure)
-- [Todos (Design)](#todos-design)
-- [Todos (Front)](#todos-front)
-- [Issues](#issues)
-
 ## File Structure
 ```
 .
@@ -30,6 +25,8 @@ A React Native front-end client for [**Mindbut**](https://github.com/MindBut/mod
         │   └── (감정의 이유 아이콘)
         ├── kakao_login/
         │   └── (카카오 로그인 배너)
+        ├── mood/
+        │   └── (세부 감정 이미지)
         └── (기타 에셋)
 ```
 
@@ -41,34 +38,6 @@ cd Mindbut
 cd ios && pod install
 npm run ios
 ```
-
-
-## Todos (Design)
-시뮬레이터: iPhone 15 (화면 크기 393 * 852)
-
-**온보딩**
-- [ ] 마인드벗 로고
-- [ ] 온보딩에서 표시할 항목
-
-**무드 트래킹**
-- [ ] 감정의 이유 선택하는 창에서 SVG 아이콘 크기 통일시키기
-- [ ] SVG 파일에서 `<path />` 안에 있는 `fill="currentColor"`로 전부 바꿔주기 (`<svg />`에 있는 `fill`은 안바꿔도 됨)
-
-## Todos (Front)
-**API**
-- [ ] 사용자 이름 어떻게 불러올지 결정하기
-
-**온보딩**
-- [ ] 초기 로딩 화면 설정하기
-- [ ] 온보딩 항목 `<FlatList />`로 전환
-
-**무드 트래킹**
-- [ ] 채팅이랑 무드 트래킹 분리하기
-- [ ] 무드 트래킹에서 무드 레코드로 넘어가기
-- [ ] 감정의 이유 '추가하기' 버튼
-
-**무드 레코드**
-- [ ] 무드 레코드 페이지
 
 ## Issues
 > [!WARNING]
