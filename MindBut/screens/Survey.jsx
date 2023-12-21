@@ -179,7 +179,7 @@ export default Survey = () => {
       {
         "user_id": 0,
         "user_kakaotalk": "1234567890",
-        "user_name": "Hello",
+        "user_name": username,
         "bot_name": "string",
         "bot_color": "string",
         "survey_question_one": "string",

@@ -2,12 +2,16 @@ import {
   ScrollView, 
   StyleSheet,
 } from 'react-native';
-import { Colors, Fonts } from '../common/styles';
+import { Colors, Device, Fonts } from '../common/styles';
 import Chat from '../common/Chat';
 import { useRef, useState } from 'react';
+import Button from '../common/Button';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default EasyChat = ({ userMessage, response }) => {
+
+  const navigation = useNavigation();
 
   const WELCOME = [{
     seq: 1,
@@ -46,10 +50,18 @@ export default EasyChat = ({ userMessage, response }) => {
       {chatLists.map((item) => (
         <Chat texts={item.chats} fromUser={item.fromUser} key={chatLists.indexOf(item)} />
       ))}
+      <Button 
+        text={"무드 트래킹 완료하기✅"}
+        alternativeStyle={true}
+        onPress={() => navigation.navigate('MoodRecord')}
+      />
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-
+  pageBody: {
+    // borderWidth: 3,
+    width: Device.fullLayoutWidth,
+  }
 });

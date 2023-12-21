@@ -77,18 +77,21 @@ export default MoodTracking = () => {
         "user_kakaotalk": "1234567890",
         "user_name": "string",
         "bot_name": "string",
-        "bot_color": "string",
         "survey_question_one": "string",
         "survey_question_two": "string",
         "survey_question_three": "string",
         "survey_question_four": "string",
         "survey_question_five": "string"
       },
-      "chatting": {
-        "chatting_id": 0,
+      "moodtracking": {
+        "moodtracking_id": 0,
         "user_id": 0,
-        "chatting_date": "2023-12-21T11:32:56.368Z",
+        "moodtracking_date": "2023-12-21",
+        "message_prompt": "string",
         "message_first": "string",
+        "message_second": "string",
+        "message_first_answer": "string",
+        "message_second_answer": "string",
         "message_model": "string",
         "emotion_reason": response3,
         "emotion_one": response1.category,
@@ -98,11 +101,15 @@ export default MoodTracking = () => {
     };
 
     await axios.post(
-      "http://localhost:8000/chatting/moodtracking",
+      "http://localhost:8000/moodtracking",
       requestBody
     ).then(
+      () => axios.get(
+        "http://localhost:8000/moodtracking/record/last?user_kakaotalk=1234567890"
+      )
+    ).then(
       // TODO: Replace message
-      (res) => { setMessage(res.data.detail); setReply("Something..."); }
+      (res) => { setMessage(res.data.message_prompt); setReply(res.data.message_model); }
     ).catch(
       (err) => console.error(err)
     );
