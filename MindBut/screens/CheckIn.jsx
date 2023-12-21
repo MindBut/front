@@ -56,6 +56,9 @@ export default CheckIn = () => {
         chats: [{ seq: 1, text: chatText }]
       }
     ]);
+    // const response = await axios.post(
+    //   "http://localhost:8000/chatting/",
+    // )
 
     // TODO: Receive from server
     setTimeout(() => {

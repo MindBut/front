@@ -39,9 +39,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
         //   source={require('../../assets/icons/bed.svg')} 
         // />
         <WorkIcon 
-          color={response.includes('일') ? Colors.primary : Colors.grayText} 
-          width={14} 
-          height={14} 
+          color={response === '일' ? Colors.primary : Colors.grayText} 
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -51,9 +51,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '학교',
       image: (
         <SchoolIcon 
-          color={response.includes('학교') ? Colors.primary : Colors.grayText} 
-          width={14} 
-          height={14} 
+          color={response === '학교' ? Colors.primary : Colors.grayText} 
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -63,9 +63,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '외부활동',
       image: (
         <ExtIcon 
-          color={response.includes('외부활동') ? Colors.primary : Colors.grayText} 
-          width={14} 
-          height={14} 
+          color={response === '외부활동' ? Colors.primary : Colors.grayText} 
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -75,9 +75,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '집',
       image: (
         <HomeIcon 
-          color={response.includes('집') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '집' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -87,9 +87,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '나',
       image: (
         <SelfIcon
-          color={response.includes('나') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '나' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -99,9 +99,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '연인',
       image: (
         <LoveIcon 
-          color={response.includes('연인') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '연인' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -111,9 +111,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '가족',
       image: (
         <FamilyIcon 
-          color={response.includes('가족') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '가족' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -123,9 +123,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '친구',
       image: (
         <FriendIcon 
-          color={response.includes('친구') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '친구' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -135,9 +135,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: 'SNS',
       image: (
         <ChatIcon 
-          color={response.includes('SNS') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === 'SNS' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -147,9 +147,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '음악',
       image: (
         <MusicIcon 
-          color={response.includes('음악') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '음악' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -159,9 +159,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '수면',
       image: (
         <BedIcon 
-          color={response.includes('수면') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '수면' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -171,9 +171,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '운동',
       image: (
         <RunningIcon 
-          color={response.includes('운동') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '운동' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -183,21 +183,21 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '몸',
       image: (
         <BodyIcon 
-          color={response.includes('몸') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '몸' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
   }, {
-    key: '14',
+    key: 'styles.itemIcon.size',
     option: {
       name: '건강',
       image: (
         <HealthIcon 
-          color={response.includes('건강') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '건강' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -207,9 +207,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '음식',
       image: (
         <FoodIcon 
-          color={response.includes('음식') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '음식' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -219,9 +219,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '돈',
       image: (
         <MoneyIcon 
-          color={response.includes('돈') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '돈' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -231,9 +231,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '날씨',
       image: (
         <WeatherIcon 
-          color={response.includes('날씨') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '날씨' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -243,9 +243,9 @@ export default SelectReason = ({ current, response, setResponse}) => {
       name: '청소',
       image: (
         <CleaningIcon 
-          color={response.includes('청소') ? Colors.primary : Colors.grayText}
-          width={14} 
-          height={14} 
+          color={response === '청소' ? Colors.primary : Colors.grayText}
+          width={styles.itemIcon.size} 
+          height={styles.itemIcon.size} 
         />
       )
     }
@@ -265,15 +265,16 @@ export default SelectReason = ({ current, response, setResponse}) => {
             <Option 
               text={item.option.name} 
               element={item.option.image}
-              selected={response.includes(item.option.name)}
+              selected={response === item.option.name}
               onPress={() => {
-                if (response.includes(item.option.name)) {
-                  let res = [...response];
-                  res.splice(res.indexOf(item.option.name), 1);
-                  setResponse(res);
-                } else {
-                  setResponse((res) => [...res, item.option.name])
-                }
+                // if (response === item.option.name)) {
+                //   let res = [...response];
+                //   res.splice(res.indexOf(item.option.name), 1);
+                //   setResponse(res);
+                // } else {
+                //   setResponse((res) => [...res, item.option.name])
+                // }
+                setResponse(item.option.name);
               }}
               style={styles.item}
               fontStyle={styles.itemFont}
@@ -281,7 +282,7 @@ export default SelectReason = ({ current, response, setResponse}) => {
           )}
           numColumns={3}
         />
-        <Option text={"+ 추가하기"} style={{width: '80%', marginTop: 30, paddingVertical: 10}} />
+        {/* <Option text={"+ 추가하기"} style={{width: '80%', marginTop: 30, paddingVertical: 10}} /> */}
       </View>
     </>
   );
@@ -317,7 +318,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   itemIcon: {
-    width: 14,
-    height: 14,
+    size: 14,
   }
 });

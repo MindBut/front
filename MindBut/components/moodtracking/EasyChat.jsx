@@ -7,7 +7,7 @@ import Chat from '../common/Chat';
 import { useRef, useState } from 'react';
 
 
-export default EasyChat = ({ userMessage }) => {
+export default EasyChat = ({ userMessage, response }) => {
 
   const WELCOME = [{
     seq: 1,
@@ -26,14 +26,16 @@ export default EasyChat = ({ userMessage }) => {
   // Refs
   const scrollRef = useRef();
 
-  // States
-  const [chatLists, setChatLists] = useState([{
+  const chatLists = [{
     fromUser: false, 
     chats: WELCOME 
   }, {
     fromUser: true,
     chats: [{ seq: 1, text: userMessage }]
-  }]);
+  }, {
+    fromUser: false,
+    chats: [{ seq: 1, text: response }]
+  }];
 
 
   return (

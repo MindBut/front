@@ -10,7 +10,7 @@ import {
   Image
 } from 'react-native';
 import axios from 'axios';
-import { Colors } from '../components/common/styles';
+import { Colors, Device } from '../components/common/styles';
 import { useNavigation } from '@react-navigation/native';
 import { useRef, useState } from 'react';
 import Button from '../components/common/Button';
@@ -32,9 +32,11 @@ export default MoodTracking = () => {
   // Scale Mood
   const [response2, setResponse2] = useState();
   // Select Reason
-  const [response3, setResponse3] = useState([]);
-  // Message from MindBut
-  const [message, setMessage] = useState('');
+  const [response3, setResponse3] = useState();
+
+  // Send & Reply
+  const [message, setMessage] = useState();
+  const [reply, setReply] = useState();
 
   // Sub-pages within Mood Tracking
   const PAGES = [{
@@ -63,29 +65,61 @@ export default MoodTracking = () => {
   }, {
     key: '4',
     component: (
-      <EasyChat userMessage={"(대충 생성된 문장)"} />
+      <EasyChat userMessage={message} response={reply} />
     )
   }];
+
+  // Send to server
+  const sendChatToServer = async () => {
+    const requestBody = {
+      "user": {
+        "user_id": 0,
+        "user_kakaotalk": "1234567890",
+        "user_name": "string",
+        "bot_name": "string",
+        "bot_color": "string",
+        "survey_question_one": "string",
+        "survey_question_two": "string",
+        "survey_question_three": "string",
+        "survey_question_four": "string",
+        "survey_question_five": "string"
+      },
+      "chatting": {
+        "chatting_id": 0,
+        "user_id": 0,
+        "chatting_date": "2023-12-21T11:32:56.368Z",
+        "message_first": "string",
+        "message_model": "string",
+        "emotion_reason": response3,
+        "emotion_one": response1.category,
+        "emotion_two": response1.subcategory,
+        "emotion_intensity": response2
+      }
+    };
+
+    await axios.post(
+      "http://localhost:8000/chatting/moodtracking",
+      requestBody
+    ).then(
+      // TODO: Replace message
+      (res) => { setMessage(res.data.detail); setReply("Something..."); }
+    ).catch(
+      (err) => console.error(err)
+    );
+  };
 
   /**
    * Show next page elements. If end of page, do nothing
    */
-  const showNextPage = () => {
+  const showNextPage = async () => {
     try {
+      if (currentPage === 2) {
+        await sendChatToServer();
+      }
       flatListRef.current.scrollToIndex({
         animated: true, 
         index: currentPage + 1
       });
-      
-      if (currentPage === 2) {
-        const requestBody = {
-          mood: response1,
-          scale: response2,
-          reason: response3,
-        }
-        console.log(requestBody);
-      }
-
       setCurrentPage((currentPage) => ++currentPage);
     } catch (err) {
       // End of page
@@ -126,7 +160,7 @@ export default MoodTracking = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <View style={styles.pageHeader}>
-        {(currentPage < 3) ? (
+        {(currentPage < 4) ? (
           <Pressable onPress={showPrevPage}>
             <Image 
               style={{width: 28, height: 28, marginBottom: 20}} 
@@ -169,12 +203,15 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 20 : 0,
     backgroundColor: Colors.trueWhite,
+    alignItems: 'center',
   },
   pageHeader: {
-    height: '5%',
+    // borderWidth: 3,
+    height: Device.tabBarHeight,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    width: Device.fullLayoutWidth,
+    height: Device.tabBarHeight,
   },
   pageBody: {
     height: '100%',
@@ -182,8 +219,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   pageFooter: {
-    height: '15%',
+    // borderWidth: 2,
+    borderColor: 'green',
     justifyContent: 'center',
-    paddingHorizontal: 20,
+    width: Device.fullLayoutWidth,
+    height: Device.navigationHeight,
   },
 });
