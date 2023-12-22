@@ -38,8 +38,19 @@ const KakaoLoginButton = () => {
   const navigation = useNavigation();
   const signInWithAccessToken = async (accessToken) => {
     axios.post(
-      "http://localhost:8000/login/",
-      { "access_token": accessToken }
+      "http://localhost:8000/signup/",
+      // { "access_token": accessToken }
+      {
+        "user_id": 0,
+        "user_kakaotalk": "1234567890",
+        "user_name": "string",
+        "bot_name": "string",
+        "survey_question_one": "string",
+        "survey_question_two": "string",
+        "survey_question_three": "string",
+        "survey_question_four": "string",
+        "survey_question_five": "string"
+      }
     )
     .then(() => navigation.navigate("Survey"))
     .catch((err) => console.error("[Server Login]", err));

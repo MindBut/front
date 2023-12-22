@@ -16,24 +16,11 @@ import { Colors, Fonts } from '../components/common/styles';
 import { useNavigation } from '@react-navigation/native';
 import Button from '../components/common/Button';
 import Chat from '../components/common/Chat';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 
 export default CheckIn = () => {
 
-  const WELCOME = [{
-    seq: 1,
-    text: '정신건강을 위한 투자가 시간 낭비처럼 느껴질 수도 있어요.',
-  }, {
-    seq: 2,
-    text: '하지만 마음 속에만 언젠가 묵혀둔 감정들이 터져버릴지도...',
-  }, {
-    seq: 3,
-    text: '지금 OOO님의 감정은 어떠신가요?',
-  }, {
-    seq: 4,
-    text: '오늘 어떻게 도와드릴까요?',
-  }];
 
   // Refs
   const scrollRef = useRef();
@@ -42,10 +29,35 @@ export default CheckIn = () => {
   // States
   const [isChatting, setIsChatting] = useState(false);
   const [chatText, setChatText] = useState('');
+  
   const [chatLists, setChatLists] = useState([{
     fromUser: false, 
-    chats: WELCOME 
+    chats: []
   }]);
+
+  useEffect(() => {
+    axios.get(
+      "http://localhost:8000/login?user_kakaotalk=1234567890"
+    )
+    .then((res) => res.data)
+    .then((data) => setChatLists([{
+      fromUser: false, 
+      chats: [{
+        seq: 1,
+        text: '정신건강을 위한 투자가 시간 낭비처럼 느껴질 수도 있어요.',
+      }, {
+        seq: 2,
+        text: '하지만 마음 속에만 언젠가 묵혀둔 감정들이 터져버릴지도...',
+      }, {
+        seq: 3,
+        text: '지금 ' + data.user_name + '님의 감정은 어떠신가요?',
+      }, {
+        seq: 4,
+        text: '오늘 어떻게 도와드릴까요?',
+      }] 
+    }]))
+    // .then(() => console.log(name))
+  }, []);
 
   const sendChatToServer = async () => {
     // TODO: Send to server
@@ -56,9 +68,6 @@ export default CheckIn = () => {
         chats: [{ seq: 1, text: chatText }]
       }
     ]);
-    // const response = await axios.post(
-    //   "http://localhost:8000/chatting/",
-    // )
 
     // TODO: Receive from server
     setTimeout(() => {

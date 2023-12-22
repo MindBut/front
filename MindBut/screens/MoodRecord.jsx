@@ -26,7 +26,10 @@ export default MoodRecord = () => {
   // States
   const [selectedDate, setSelectedDate] = useState('2023-12-22');
   const [markedDates, setMarkedDates] = useState({});
+  const [moodRecords, setMoodRecords] = useState([]);
+  
   const data = ['2023-12-18', '2023-12-19'];
+
 
   const getDataFromDate = async (dateString) => {
     // console.log(dateString);
@@ -35,20 +38,23 @@ export default MoodRecord = () => {
   // Effects
   useEffect(() => {
     axios.get(
-      'https://jsonplaceholder.typicode.com/posts'
-    ).then(
-      () => {
-        const dates = data.reduce(
-          (c, v) => 
-            Object.assign(c, {
-              [v]: { selected: false, dots: [happy, angry] }
-            }),
-          {}
-        );
-        setMarkedDates(dates);
-        console.log(dates);
-      }
+      `http://localhost:8000/moodtracking/record/date?user_kakaotalk=1234567890&moodtracking_date=${selectedDate}`
     )
+    .then((res) => res.data)
+    .then((data) => setMoodRecords(data))
+    // .then(
+    //   () => {
+    //     const dates = data.reduce(
+    //       (c, v) => 
+    //         Object.assign(c, {
+    //           [v]: { selected: false, dots: [happy, angry] }
+    //         }),
+    //       {}
+    //     );
+    //     setMarkedDates(dates);
+    //     console.log(dates);
+    //   }
+    // )
   }, []);
 
   
@@ -75,7 +81,14 @@ export default MoodRecord = () => {
             textDayFontFamily: Fonts.body,
             arrowColor: Colors.lightGrayUI,
           }}
-          onDayPress={(day) => setSelectedDate(day.dateString)}
+          onDayPress={(day) => {
+            setSelectedDate(day.dateString);
+            axios.get(
+              `http://localhost:8000/moodtracking/record/date?user_kakaotalk=1234567890&moodtracking_date=${day.dateString}`
+            )
+            .then((res) => res.data)
+            .then((data) => setMoodRecords(data))
+          }}
           markingType={'multi-dot'}
           markedDates={{
             ...markedDates,
@@ -88,8 +101,17 @@ export default MoodRecord = () => {
       </View>
       <ScrollView style={styles.recordsArea}>
         <Text style={{fontSize: 28, fontFamily: Fonts.header}}>무드 트래킹</Text>
-        <MoodTrackingElement scale={0.9} category={"기쁨"} mood={"감사한"} reason={"학교"} time={"4:44 PM"} />
-        <MoodTrackingElement scale={0.2} category={"슬픔"} mood={"짜증난"} reason={"수면"} time={"4:54 PM"} />
+        {/* <MoodTrackingElement scale={0.9} category={"기쁨"} mood={"감사한"} reason={"학교"} time={"4:44 PM"} />
+        <MoodTrackingElement scale={0.2} category={"슬픔"} mood={"짜증난"} reason={"수면"} time={"4:54 PM"} /> */}
+        {moodRecords.map((item) => (
+          <MoodTrackingElement 
+            scale={item.emotion_intensity} 
+            category={item.emotion_one}
+            mood={item.emotion_two}
+            reason={item.emotion_reason}
+            key={moodRecords.indexOf(item)}
+          />
+        ))}
         <Text style={{fontSize: 28, fontFamily: Fonts.header, marginTop: 30,}}>상담 체크인</Text>
         <CheckInElement chat={"할일이 너무 많아서 힘들어.."} />
       </ScrollView>
@@ -109,7 +131,7 @@ export default MoodRecord = () => {
           onPress={() => navigation.navigate('MoodTracking')}
         >
           <ListIcon width={18} height={18} />
-          <Text style={styles.navigatorText}>무드 레코드</Text>
+          <Text style={styles.navigatorText}>무드 트래킹</Text>
         </Pressable>
       </View>
     </SafeAreaView>

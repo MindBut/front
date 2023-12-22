@@ -69,7 +69,7 @@ export default Survey = () => {
       <View style={{width: Device.fullLayoutWidth}}>
         <Instruction 
           title={"좋습니다!"}
-          description={"맞춤형 마인드벗을 만들기 위해 OOO님에 대해 조금 더 알려주세요."} 
+          description={"맞춤형 마인드벗을 만들기 위해 " + username + "님에 대해 조금 더 알려주세요."} 
         />
       </View>
     )

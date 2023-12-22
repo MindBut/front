@@ -35,8 +35,10 @@ export default MoodTracking = () => {
   const [response3, setResponse3] = useState();
 
   // Send & Reply
-  const [message, setMessage] = useState();
-  const [reply, setReply] = useState();
+  // const [message, setMessage] = useState();
+  // const [reply, setReply] = useState();
+  // const [choices, setChoices] = useState();
+  const [messages, setMessages] = useState({choices: [], choiceRes: []});
 
   // Sub-pages within Mood Tracking
   const PAGES = [{
@@ -65,7 +67,7 @@ export default MoodTracking = () => {
   }, {
     key: '4',
     component: (
-      <EasyChat userMessage={message} response={reply} />
+      <EasyChat messages={messages} setResponse1={setResponse1} setResponse2={setResponse2} setResponse3={setResponse3} setCurrentPage={setCurrentPage} />
     )
   }];
 
@@ -109,7 +111,14 @@ export default MoodTracking = () => {
       )
     ).then(
       // TODO: Replace message
-      (res) => { setMessage(res.data.message_prompt); setReply(res.data.message_model); }
+      // (res) => { setMessage(res.data.message_prompt); setReply(res.data.message_model); }
+      (res) => setMessages({
+        userMessage: res.data.message_prompt,
+        response: res.data.message_model,
+        // choices: res.data.something
+        choices: ["Hello", "World"],
+        choiceRes: ["olleH", "dlroW"],
+      })
     ).catch(
       (err) => console.error(err)
     );

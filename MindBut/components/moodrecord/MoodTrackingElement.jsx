@@ -88,7 +88,6 @@ export default MoodTrackingElement = ({ category, scale, mood, reason, time}) =>
         <View style={styles.headerContent}>
           <Text style={styles.mood}>{concatScaleAndMood(scale, mood)}</Text>
           <View style={{justifyContent: 'flex-end'}}>
-            <Text>{time}</Text>  
           </View>
         </View>
       </View>
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
   wrapper: {
     // borderWidth: 1,
     width: '100%',
-    marginBottom: 10,
+    marginVertical: 10,
   },
   header: {
     flexDirection: 'row',
@@ -153,5 +152,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: Fonts.body,
     color: Colors.grayText,
+    marginHorizontal: 10,
   }
 });

@@ -12,7 +12,6 @@ export default CheckInElement = ({ chat }) => {
 
   return (
     <View style={styles.wrapper}>
-      <Text style={{textAlign: 'right',}}>4:44 PM</Text>
       <View style={{width: '100%', alignItems: 'flex-end'}}>
         <View style={styles.chatBox}>
           <Text style={styles.chatText}>{chat}</Text>
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
   wrapper: {
     // borderWidth: 1,
     width: '100%',
-    marginBottom: 10,
+    marginVertical: 10,
   },
   chatBox: {
     width: Device.fullLayoutWidth - 12,
