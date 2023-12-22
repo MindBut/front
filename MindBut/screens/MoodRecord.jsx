@@ -132,7 +132,13 @@ export default MoodRecord = () => {
         ))}
         <Text style={{fontSize: 28, fontFamily: Fonts.header, marginTop: 30,}}>상담 체크인</Text>
         {chatRecords && chatRecords.map((item) => (
-          <CheckInElement chat={item.chatting_user} key={chatRecords.indexOf(item)} />
+          <Pressable 
+            key={chatRecords.indexOf(item)}
+            onPress={() => navigation.navigate(
+              'DisplayChatRecord', {id: item.counsel_id})}
+          >
+            <CheckInElement chat={item.chatting_user} />
+          </Pressable>
         ))}
       </ScrollView>
       <View style={styles.navigatorArea}>
