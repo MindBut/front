@@ -212,13 +212,13 @@ export default OnBoarding = () => {
             ...styles.animationView,
             opacity: fadeAnim4,
           }}>
-          <Text style={styles.title}>
+          <Text style={{...styles.title, marginBottom: 150}}>
             마인드벗
           </Text>
-          <Image
+          {/* <Image
             style={styles.logo}
             source={require("../assets/wip.png")}
-          />
+          /> */}
           <KakaoLoginButton />
         </Animated.View>
       </View>
