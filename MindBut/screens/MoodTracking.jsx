@@ -115,9 +115,10 @@ export default MoodTracking = () => {
       (res) => setMessages({
         userMessage: res.data.message_prompt,
         response: res.data.message_model,
-        // choices: res.data.something
-        choices: ["Hello", "World"],
-        choiceRes: ["olleH", "dlroW"],
+        choices: [res.data.message_first, res.data.message_second],
+        choiceRes: [res.data.message_first_answer, res.data.message_second_answer]
+        // choices: ["Hello", "World"],
+        // choiceRes: ["olleH", "dlroW"],
       })
     ).catch(
       (err) => console.error(err)
