@@ -27,6 +27,7 @@ export default MoodRecord = () => {
   const [selectedDate, setSelectedDate] = useState('2023-12-22');
   const [markedDates, setMarkedDates] = useState({});
   const [moodRecords, setMoodRecords] = useState([]);
+  const [chatRecords, setChatRecords] = useState([]);
   
   const data = ['2023-12-18', '2023-12-19'];
 
@@ -42,6 +43,14 @@ export default MoodRecord = () => {
     )
     .then((res) => res.data)
     .then((data) => setMoodRecords(data))
+    .then(
+      () => axios.get(
+        `http://localhost:8000/chatting/record/date?user_kakaotalk=1234567890&counsel_date=${selectedDate}`
+      )
+    )
+    .then((res) => res.data)
+    .then((data) => setChatRecords(data))
+    .catch((err) => console.error(err))
     // .then(
     //   () => {
     //     const dates = data.reduce(
@@ -88,6 +97,15 @@ export default MoodRecord = () => {
             )
             .then((res) => res.data)
             .then((data) => setMoodRecords(data))
+            .then(
+              () => axios.get(
+                `http://localhost:8000/chatting/record/date?user_kakaotalk=1234567890&counsel_date==${day.dateString}`
+              )
+            )
+            .then((res) => setChatRecords(res.data))
+            .catch((err) => setChatRecords([]))
+
+            console.log(chatRecords);
           }}
           markingType={'multi-dot'}
           markedDates={{
@@ -113,7 +131,9 @@ export default MoodRecord = () => {
           />
         ))}
         <Text style={{fontSize: 28, fontFamily: Fonts.header, marginTop: 30,}}>상담 체크인</Text>
-        <CheckInElement chat={"할일이 너무 많아서 힘들어.."} />
+        {chatRecords && chatRecords.map((item) => (
+          <CheckInElement chat={item.chatting_user} key={chatRecords.indexOf(item)} />
+        ))}
       </ScrollView>
       <View style={styles.navigatorArea}>
         <Pressable 

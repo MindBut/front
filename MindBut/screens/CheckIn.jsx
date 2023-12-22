@@ -69,18 +69,55 @@ export default CheckIn = () => {
       }
     ]);
 
-    // TODO: Receive from server
-    setTimeout(() => {
-      setChatLists((chatLists) => [
+    setChatText('');
+    
+    await axios.post(
+      "http://localhost:8000/counsel/chatting",
+      {
+        "user": {
+          "user_id": 0,
+          "user_kakaotalk": "1234567890",
+          "user_name": "string",
+          "bot_name": "string",
+          "survey_question_one": "string",
+          "survey_question_two": "string",
+          "survey_question_three": "string",
+          "survey_question_four": "string",
+          "survey_question_five": "string"
+        },
+        "chatting": {
+          "chatting_id": 0,
+          "counsel_id": 0,
+          "chatting_datetime": "2023-12-22T03:15:38.871Z",
+          "chatting_user": chatText,
+          "chatting_computer": "string"
+        }
+      }
+    ).then(
+      () => axios.get(
+        "http://localhost:8000/chatting/record/last?user_kakaotalk=1234567890"
+      )
+    ).then(
+      // (res) => console.log(res.data)
+      (res) => setChatLists((chatLists) => [
         ...chatLists, 
         {
           fromUser: false, 
-          chats: [{ seq: 1, text: chatText }]
+          chats: [{ seq: 1, text: res.data.chatting_computer }]
         }
-      ]);
-    }, 1000);
+      ])
+    );
 
-    setChatText('');
+    // TODO: Receive from server
+    // setTimeout(() => {
+    //   setChatLists((chatLists) => [
+    //     ...chatLists, 
+    //     {
+    //       fromUser: false, 
+    //       chats: [{ seq: 1, text: chatText }]
+    //     }
+    //   ]);
+    // }, 1000);
   }
 
   return (
@@ -88,7 +125,10 @@ export default CheckIn = () => {
       <StatusBar />
       <View style={styles.pageHeader}>
         {isChatting ? (
-          <Pressable onPress={() => setIsChatting(false)} style={styles.quit}>
+          <Pressable onPress={() => {
+            setIsChatting(false)
+            navigation.navigate('MoodRecord')
+          }} style={styles.quit}>
             <Text style={styles.quitText}>상담 종료</Text>
           </Pressable>
         ) : (
@@ -125,7 +165,23 @@ export default CheckIn = () => {
           <Button 
             text={"직접 입력하기"} 
             alternativeStyle={true} 
-            onPress={() => setIsChatting(true)} />
+            onPress={() => {
+              setIsChatting(true)
+              axios.post(
+                "http://localhost:8000/counsel",
+                {
+                  "user_id": 0,
+                  "user_kakaotalk": "1234567890",
+                  "user_name": "string",
+                  "bot_name": "string",
+                  "survey_question_one": "string",
+                  "survey_question_two": "string",
+                  "survey_question_three": "string",
+                  "survey_question_four": "string",
+                  "survey_question_five": "string"
+                }
+              )
+            }} />
           <Button 
             text={"무드 트래킹하기"} 
             onPress={() => navigation.navigate('MoodTracking')}/>

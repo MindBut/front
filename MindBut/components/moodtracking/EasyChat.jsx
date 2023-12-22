@@ -2,22 +2,25 @@ import {
   Pressable,
   ScrollView, 
   StyleSheet,
+  Text,
 } from 'react-native';
 import { Colors, Device, Fonts } from '../common/styles';
-import Chat from '../common/Chat';
+import Chat, { ChatBubble } from '../common/Chat';
 import { useRef, useState, useEffect } from 'react';
 import Button from '../common/Button';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
 
-export default EasyChat = ({ messages, setResponse1, setResponse2, setResponse3, setCurrentPage }) => {
+export default EasyChat = ({ messages, setResponse1, setResponse2, setResponse3, setCurrentPage, setMessages }) => {
 
   const navigation = useNavigation();
 
   // State
   const [name, setName] = useState('');
   const [finalAnswer, setFinalAnswer] = useState();
+  const [selectedFirst, setSelectedFirst] = useState(false);
+  const [selectedSecond, setSelectedSecond] = useState(false);
 
   const WELCOME = [{
     seq: 1,
@@ -49,25 +52,10 @@ export default EasyChat = ({ messages, setResponse1, setResponse2, setResponse3,
     chats: [{ seq: 1, text: messages.response }]
   }];
 
-  const firstChoice = {
-    fromUser: true,
-    chats: [{ seq: 1, text: messages.choices[0] }]
-  };
-
-  const secondChoice = {
-    fromUser: true,
-    chats: [{ seq: 2, text: messages.choices[1] }]
-  };
-
-  const firstAnswer = {
-    fromUser: false,
-    chats: [{ seq: 1, text: messages.choiceRes[0] }]
-  };
-
-  const secondAnswer = {
-    fromUser: false,
-    chats: [{ seq: 1, text: messages.choiceRes[1] }]
-  };
+  const firstChoice = messages.choices[0];
+  const secondChoice = messages.choices[1];
+  const firstAnswer = messages.choiceRes[0];
+  const secondAnswer = messages.choiceRes[1];
 
   useEffect(() => {
     axios.get(
@@ -86,19 +74,30 @@ export default EasyChat = ({ messages, setResponse1, setResponse2, setResponse3,
       {chatLists.map((item) => (
         <Chat texts={item.chats} fromUser={item.fromUser} key={chatLists.indexOf(item)} />
       ))}
-      <Pressable onPress={() => {
-        setFinalAnswer(
-          <Chat texts={firstAnswer.chats} fromUser={false} keys={"first"} />
-        )
-      }}>
-        <Chat texts={firstChoice.chats} fromUser={true} key={0} />
+      <Text style={{width: '100%', textAlign: 'center'}}>응답을 선택해주세요</Text>
+      <Pressable 
+        onPress={() => {
+          setFinalAnswer(
+            <ChatBubble text={firstAnswer} fromUser={false} keys={"first"} />
+          )
+          setSelectedFirst(true);
+          setSelectedSecond(false);
+        }}
+        style={{alignItems: 'flex-end', paddingHorizontal: 16, }}
+      >
+        <ChatBubble text={firstChoice} fromUser={true} alternative={!selectedFirst} key={0} />
       </Pressable>
-      <Pressable onPress={() => {
-        setFinalAnswer(
-          <Chat texts={secondAnswer.chats} fromUser={false} keys={"second"} />
-        )
-      }}>
-        <Chat texts={secondChoice.chats} fromUser={true} key={0} />
+      <Pressable 
+        onPress={() => {
+          setFinalAnswer(
+            <ChatBubble text={secondAnswer} fromUser={false} keys={"second"} />
+          )
+          setSelectedFirst(false);
+          setSelectedSecond(true);
+        }}
+        style={{alignItems: 'flex-end', paddingHorizontal: 16, }}
+      >
+        <ChatBubble text={secondChoice} fromUser={true} alternative={!selectedSecond} key={0} />
       </Pressable>
       {finalAnswer}
       {finalAnswer ? (
@@ -110,6 +109,7 @@ export default EasyChat = ({ messages, setResponse1, setResponse2, setResponse3,
             setResponse1({ category: '', subcategory: '' });
             setResponse2();
             setResponse3();
+            setMessages({choices: [], choiceRes: []});
             navigation.navigate('MoodRecord');
           }}
         />

@@ -7,18 +7,20 @@ import {
 } from 'react-native';
 import { Colors, Fonts } from './styles';
 
-const ChatBubble = ({ text, fromUser }) => {
+export const ChatBubble = ({ text, fromUser, alternative }) => {
   return (
     <View style={{
       ...styles.bubble,
-      backgroundColor: fromUser ? Colors.primary : Colors.gray,
+      backgroundColor: fromUser ? (alternative ? Colors.trueWhite : Colors.primary) : Colors.gray,
       borderTopLeftRadius: fromUser ? 24 : 0,
       borderTopRightRadius: fromUser ? 0 : 24,
+      borderWidth: alternative ? 1 : 0,
+      borderColor: Colors.primary,
     }}>
       <Text 
         style={{
           ...styles.bubbleText, 
-          color: fromUser ? Colors.trueWhite : '#000000'
+          color: fromUser ? (alternative ? Colors.primary : Colors.trueWhite) : '#000000'
         }}>
         {text}
       </Text>

@@ -67,7 +67,7 @@ export default MoodTracking = () => {
   }, {
     key: '4',
     component: (
-      <EasyChat messages={messages} setResponse1={setResponse1} setResponse2={setResponse2} setResponse3={setResponse3} setCurrentPage={setCurrentPage} />
+      <EasyChat messages={messages} setResponse1={setResponse1} setResponse2={setResponse2} setResponse3={setResponse3} setCurrentPage={setCurrentPage} setMessages={setMessages} />
     )
   }];
 
