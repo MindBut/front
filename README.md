@@ -31,18 +31,10 @@ A React Native front-end client for [**Mindbut**](https://github.com/MindBut/mod
 ```
 
 ## Run
-현재는 iOS 버전만 구현됨
+iOS 버전만 구현
 
 ```bash
 cd Mindbut
 cd ios && pod install
 npm run ios
 ```
-
-## Issues
-> [!WARNING]
-> **iOS 17.0 한글 이슈**
->
-> iOS 17.0에서 한글 입력시 자모가 분리되는 이슈가 발생함 😥
->
-> iOS 16.4로 다운그레이드 시켜도 간헐적으로 될 때도 있고 안될 때도 있어서 일단 시연할 때는 텍스트 직접 입력하지 말고 미리 입력한 문장 복사+붙여넣기 하는 식으로 가야될 것 같음
